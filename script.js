@@ -35,10 +35,8 @@ sections.forEach(s => sio.observe(s));
 
 // Contact form
 document.getElementById('cform').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('fnote').textContent = "Thanks! I'll get back to you soon.";
-  this.reset();
-  setTimeout(() => document.getElementById('fnote').textContent = '', 6000);
+  // Let Formspree handle it — don't preventDefault
+  document.getElementById('fnote').textContent = "Sending...";
 });
 
 // Hero glow follows cursor
