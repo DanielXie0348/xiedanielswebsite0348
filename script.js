@@ -35,10 +35,22 @@ sections.forEach(s => sio.observe(s));
 
 // Contact form
 document.getElementById('cform').addEventListener('submit', function(e) {
-  // Let Formspree handle it — don't preventDefault
-  document.getElementById('fnote').textContent = "Sending...";
+  e.preventDefault();
+  const data = new FormData(this);
+  fetch('https://formspree.io/f/meerqjve', {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(res => {
+    if (res.ok) {
+      document.getElementById('fnote').textContent = "Thanks! I'll get back to you soon.";
+      this.reset();
+      setTimeout(() => document.getElementById('fnote').textContent = '', 6000);
+    } else {
+      document.getElementById('fnote').textContent = "Something went wrong, try emailing me directly.";
+    }
+  });
 });
-
 // Hero glow follows cursor
 const g1 = document.querySelector('.g1');
 document.addEventListener('mousemove', (e) => {
