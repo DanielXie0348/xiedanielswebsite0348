@@ -76,7 +76,8 @@ if (hobbyTrack) {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - hobbyTrack.offsetLeft;
-    hobbyTrack.scrollLeft = scrollLeft - (x - startX) * 1.4;
+    const walk = (e.pageX - hobbyTrack.offsetLeft - startX) * 1.4;
+    hobbyTrack.scrollLeft = scrollLeft - walk;
   });
   document.querySelector('.hobby-prev')?.addEventListener('click', () => hobbyTrack.scrollBy({ left: -360, behavior: 'smooth' }));
   document.querySelector('.hobby-next')?.addEventListener('click', () => hobbyTrack.scrollBy({ left: 360, behavior: 'smooth' }));
