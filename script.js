@@ -87,3 +87,22 @@ if (hobbyTrack) {
     hobbyTrack.scrollLeft = scrollLeft + (touchStartX - e.touches[0].clientX);
   });
 }
+
+// Photo dump slideshow
+const slides = document.querySelectorAll('.dump-slides img');
+const counter = document.querySelector('.dump-counter');
+let current = 0;
+
+if (slides.length) {
+  slides[0].classList.add('active');
+
+  const goTo = (n) => {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    if (counter) counter.textContent = `${current + 1} / ${slides.length}`;
+  };
+
+  document.querySelector('.dump-prev')?.addEventListener('click', () => goTo(current - 1));
+  document.querySelector('.dump-next')?.addEventListener('click', () => goTo(current + 1));
+}
