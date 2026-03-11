@@ -232,9 +232,8 @@ ul { list-style: none; }
 }
 
 /* ENGINEER */
-/* ENGINEER */
 #engineer {
-  padding: 7rem 0 0;
+  padding: 7rem 0 5rem;
   border-top: 1px solid var(--border);
   background: var(--cream);
   position: relative; overflow: hidden;
@@ -251,7 +250,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 .engineer-header .sh { margin-bottom: 0; }
 
@@ -271,7 +270,6 @@ ul { list-style: none; }
   transform: scale(1.06);
 }
 
-/* the track starts at the container left edge, not screen edge */
 .hobby-track {
   display: flex;
   overflow-x: auto;
@@ -279,77 +277,78 @@ ul { list-style: none; }
   -webkit-overflow-scrolling: touch;
   cursor: grab;
   scrollbar-width: none;
-  /* indent by same amount as .container padding */
-  padding-left: 5%;
+  padding: 2rem 5% 3rem;
+  gap: 2rem;
+  align-items: center;
 }
 .hobby-track::-webkit-scrollbar { display: none; }
 .hobby-track.dragging { cursor: grabbing; }
 
+/* polaroid cards */
 .hobby-card {
-  flex: 0 0 32vw;
-  min-width: 300px;
-  max-width: 480px;
-  height: 65vh;
-  min-height: 460px;
-  position: relative;
-  overflow: hidden;
+  flex: 0 0 260px;
+  background: #fff;
+  padding: 12px 12px 52px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
   scroll-snap-align: start;
-  /* gap between cards via margin */
-  margin-right: 1px;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+              box-shadow 0.35s ease;
+  cursor: pointer;
+  /* each card gets a slight tilt via nth-child */
+}
+.hobby-card:nth-child(1) { transform: rotate(-2.5deg) translateY(6px); }
+.hobby-card:nth-child(2) { transform: rotate(1.8deg) translateY(-4px); }
+.hobby-card:nth-child(3) { transform: rotate(-1.2deg) translateY(8px); }
+.hobby-card:nth-child(4) { transform: rotate(2.4deg) translateY(-6px); }
+
+.hobby-card:hover {
+  transform: rotate(0deg) translateY(-12px) scale(1.03) !important;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.16), 0 4px 12px rgba(0,0,0,0.08);
+  z-index: 10;
 }
 
+/* photo area */
 .hobby-card img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  position: absolute; inset: 0;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: brightness(0.75);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.9);
+  transition: filter 0.35s;
 }
 .hobby-card:hover img {
-  transform: scale(1.05);
-  filter: brightness(0.55);
+  filter: saturate(1.1);
 }
 
+/* polaroid caption */
 .hobby-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 52px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  padding: 1.75rem 2rem;
-  z-index: 2;
+  padding: 0 14px;
+  background: #fff;
 }
-
 .hobby-card-num {
-  font-family: var(--fd);
-  font-size: 3.5rem;
-  color: rgba(255,255,255,0.15);
-  line-height: 1;
-  display: block;
-  transition: color 0.3s;
+  font-family: var(--fmono);
+  font-size: 0.6rem;
+  color: var(--border);
+  letter-spacing: 0.1em;
 }
-.hobby-card:hover .hobby-card-num {
-  color: var(--accent);
-}
-
 .hobby-card-title {
   font-family: var(--fd);
-  font-size: 2rem;
-  letter-spacing: 0.06em;
-  color: #fff;
-  line-height: 1;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--text);
   text-transform: uppercase;
-  transform: translateY(4px);
-  transition: transform 0.35s;
-}
-.hobby-card:hover .hobby-card-title {
-  transform: translateY(0);
 }
 
 @media (max-width: 680px) {
-  .hobby-card { flex: 0 0 78vw; min-width: 240px; height: 52vh; min-height: 360px; }
+  .hobby-card { flex: 0 0 200px; }
   .engineer-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .hobby-track { padding-left: 5%; }
 }
 
 /* RESUME */
