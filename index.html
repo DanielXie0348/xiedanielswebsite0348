@@ -35,6 +35,8 @@
   </div>
 
   <section id="hero">
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
     <div class="hero-content">
       <div class="hero-eyebrow"><span class="pulse-dot"></span>Mechatronics Engineering @ University of Waterloo</div>
       <h1 class="hero-name">
@@ -135,135 +137,114 @@
   </section>
 
   <section id="projects">
-  <div class="container">
-    <div class="stag">03 — Projects</div>
-    <h2 class="sh">Selected Work</h2>
-    <div class="proj-list">
+    <div class="container">
+      <div class="stag">03 — Projects</div>
+      <h2 class="sh">Selected Work</h2>
+      <div class="proj-list">
 
-      <div class="proj-item">
-        <div class="proj-img">
-          <img src="repai-hero.jpg" alt="RepAI"/>
-        </div>
-        <div class="proj-body">
-          <div class="proj-top">
-            <span class="proj-num">01</span>
-            <div class="proj-pills"><span>Robotics</span><span>Embedded C</span><span>PCB</span></div>
+        <div class="proj-item">
+          <div class="proj-body">
+            <div class="proj-top">
+              <span class="proj-num">01</span>
+              <div class="proj-pills"><span>Robotics</span><span>Embedded C</span><span>PCB</span></div>
+            </div>
+            <h3>RepAI</h3>
+            <p>An intelligent workout assistant that uses Python, Mediapipe, OpenCV, and YOLOv8 libraries to provide real-time feedback, rep counting, and guidance during various exercise routines.</p>
+            <div class="proj-links"><a href="#">GitHub ↗</a><a href="#">Demo ↗</a></div>
           </div>
-          <h3>RepAI</h3>
-          <p>PID-controlled line follower built from scratch — custom PCB, motor driver, STM32 firmware. Sub-5mm path error at 1.2 m/s.</p>
-          <div class="proj-links"><a href="#">GitHub ↗</a><a href="#">Demo ↗</a></div>
-        </div>
-      </div>
-
-      <div class="proj-item">
-        <div class="proj-img">
-          <img src="slam-map.jpg" alt="SLAM Navigation"/>
-        </div>
-        <div class="proj-body">
-          <div class="proj-top">
-            <span class="proj-num">02</span>
-            <div class="proj-pills"><span>ROS2</span><span>Python</span></div>
+          <div class="proj-img">
+            <img src="repai-hero.jpg" alt="RepAI"/>
           </div>
-          <h3>SLAM Navigation Stack</h3>
-          <p>2D SLAM pipeline on a differential drive robot using LiDAR. Mapped a 20×20m space with &lt;3% error.</p>
-          <div class="proj-links"><a href="#">GitHub ↗</a></div>
         </div>
-      </div>
 
-      <div class="proj-item">
-        <div class="proj-img">
-          <img src="iot-node.jpg" alt="Smart Sensor Node"/>
-        </div>
-        <div class="proj-body">
-          <div class="proj-top">
-            <span class="proj-num">03</span>
-            <div class="proj-pills"><span>ESP32</span><span>IoT</span></div>
+        <div class="proj-item">
+          <div class="proj-img">
+            <img src="slam-map.jpg" alt="SLAM Navigation"/>
           </div>
-          <h3>Smart Sensor Node</h3>
-          <p>Wireless sensor node pushing data over MQTT to Home Assistant. Custom 3D printed enclosure.</p>
-          <div class="proj-links"><a href="#">GitHub ↗</a></div>
-        </div>
-      </div>
-
-      <div class="proj-item">
-        <div class="proj-img">
-          <img src="lqr-sim.jpg" alt="Inverted Pendulum"/>
-        </div>
-        <div class="proj-body">
-          <div class="proj-top">
-            <span class="proj-num">04</span>
-            <div class="proj-pills"><span>MATLAB</span><span>Controls</span></div>
+          <div class="proj-body">
+            <div class="proj-top">
+              <span class="proj-num">02</span>
+              <div class="proj-pills"><span>ROS2</span><span>Python</span></div>
+            </div>
+            <h3>AutoThaw</h3>
+            <p>ESP32-based automatic driveway salt dispenser, leverages weather API data, custom-built 3D-printed enclosure, and quality electrical design for intelligent salt distribution.</p>
+            <div class="proj-links"><a href="#">GitHub ↗</a></div>
           </div>
-          <h3>Inverted Pendulum LQR</h3>
-          <p>State-space LQR controller for a physical inverted pendulum. Stable within ±2° indefinitely on real hardware.</p>
-          <div class="proj-links"><a href="#">Report ↗</a></div>
         </div>
-      </div>
 
+        <div class="proj-item">
+          <div class="proj-body">
+            <div class="proj-top">
+              <span class="proj-num">03</span>
+              <div class="proj-pills"><span>ESP32</span><span>IoT</span></div>
+            </div>
+            <h3>Smart Sensor Node</h3>
+            <p>Wireless sensor node pushing data over MQTT to Home Assistant. Custom 3D printed enclosure.</p>
+            <div class="proj-links"><a href="#">GitHub ↗</a></div>
+          </div>
+          <div class="proj-img">
+            <img src="iot-node.jpg" alt="Smart Sensor Node"/>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-img">
+            <img src="lqr-sim.jpg" alt="Inverted Pendulum"/>
+          </div>
+          <div class="proj-body">
+            <div class="proj-top">
+              <span class="proj-num">04</span>
+              <div class="proj-pills"><span>MATLAB</span><span>Controls</span></div>
+            </div>
+            <h3>Automated Antenna Tower</h3>
+            <p>Performed structural and rotational force analysis in SolidWorks for a motorized antenna tracking tower, sizing base mounting hardware to withstand peak torques at angular velocities up to 4 rad/s, as part of Waterloo Rocketry's live telemetry tracking system for high speed launch.</p>
+            <div class="proj-links"><a href="#">Report ↗</a></div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
   </section>
 
   <section id="engineer">
   <div class="container">
     <div class="stag">04 — Creating an Engineer</div>
-    <h2 class="sh">Beyond the bench.</h2>
-    <p class="engineer-sub">Engineering is how I think on a day-to-day basis. These are the things away from the bench that shape my perspective.</p>
-
-    <div class="hobby-list">
-
-      <div class="hobby-item">
-        <div class="hobby-img">
-          <img src="photography.jpeg" alt="Photography"/>
-          <div class="hobby-overlay">
-            <span class="hobby-num">01</span>
-            <div class="hobby-text">
-              <h3>Photography</h3>
-              <p>Trained my eye for composition and light — skills that translate into physical design and presentation precision.</p>
-            </div>
-          </div>
-        </div>
+    <div class="engineer-header">
+      <h2 class="sh">Beyond the bench.</h2>
+      <div class="hobby-arrows">
+        <button class="hobby-prev" aria-label="Previous">←</button>
+        <button class="hobby-next" aria-label="Next">→</button>
       </div>
-
-      <div class="hobby-item hobby-item-alt">
-        <div class="hobby-img">
-          <img src="gym.jpeg" alt="Gym and Sport"/>
-          <div class="hobby-overlay">
-            <span class="hobby-num">02</span>
-            <div class="hobby-text">
-              <h3>Gym & Sport</h3>
-              <p>Discipline and incremental progress. Training keeps me sharp and focused during deep debugging sessions.</p>
-            </div>
-          </div>
-        </div>
+    </div>
+  </div>
+  <div class="hobby-track">
+    <div class="hobby-card">
+      <img src="photography.jpeg" alt="Photography"/>
+      <div class="hobby-card-overlay">
+        <span class="hobby-card-num">01</span>
+        <h3 class="hobby-card-title">Photography</h3>
       </div>
-
-      <div class="hobby-item hobby-item-alt">
-        <div class="hobby-img">
-          <img src="travel.jpeg" alt="Travel"/>
-          <div class="hobby-overlay">
-            <span class="hobby-num">03</span>
-            <div class="hobby-text">
-              <h3>Travel</h3>
-              <p>The best systems-thinking exercise. Navigating unfamiliar environments changes how I approach global design.</p>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="hobby-card">
+      <img src="gym.jpeg" alt="Gym and Sport"/>
+      <div class="hobby-card-overlay">
+        <span class="hobby-card-num">02</span>
+        <h3 class="hobby-card-title">Gym & Sport</h3>
       </div>
-
-      <div class="hobby-item">
-        <div class="hobby-img">
-          <img src="music.jpeg" alt="Music"/>
-          <div class="hobby-overlay">
-            <span class="hobby-num">04</span>
-            <div class="hobby-text">
-              <h3>Music</h3>
-              <p>Structured math wrapped in emotion. Provides intuition for signal processing and layered system timing.</p>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="hobby-card">
+      <img src="travel.jpeg" alt="Travel"/>
+      <div class="hobby-card-overlay">
+        <span class="hobby-card-num">03</span>
+        <h3 class="hobby-card-title">Travel</h3>
       </div>
-
+    </div>
+    <div class="hobby-card">
+      <img src="music.jpeg" alt="Music"/>
+      <div class="hobby-card-overlay">
+        <span class="hobby-card-num">04</span>
+        <h3 class="hobby-card-title">Music</h3>
+      </div>
     </div>
   </div>
   </section>

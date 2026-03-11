@@ -59,3 +59,30 @@ document.addEventListener('mousemove', (e) => {
     g1.style.top  = (e.clientY - 300 + window.scrollY) + 'px';
   }
 });
+
+// Hobby drag-to-scroll
+const hobbyTrack = document.querySelector('.hobby-track');
+if (hobbyTrack) {
+  let isDown = false, startX, scrollLeft;
+  hobbyTrack.addEventListener('mousedown', e => {
+    isDown = true;
+    hobbyTrack.classList.add('dragging');
+    startX = e.pageX - hobbyTrack.offsetLeft;
+    scrollLeft = hobbyTrack.scrollLeft;
+  });
+  hobbyTrack.addEventListener('mouseleave', () => { isDown = false; hobbyTrack.classList.remove('dragging'); });
+  hobbyTrack.addEventListener('mouseup', () => { isDown = false; hobbyTrack.classList.remove('dragging'); });
+  hobbyTrack.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - hobbyTrack.offsetLeft;
+    hobbyTrack.scrollLeft = scrollLeft - (x - startX) * 1.4;
+  });
+  document.querySelector('.hobby-prev')?.addEventListener('click', () => hobbyTrack.scrollBy({ left: -360, behavior: 'smooth' }));
+  document.querySelector('.hobby-next')?.addEventListener('click', () => hobbyTrack.scrollBy({ left: 360, behavior: 'smooth' }));
+  let touchStartX;
+  hobbyTrack.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; scrollLeft = hobbyTrack.scrollLeft; });
+  hobbyTrack.addEventListener('touchmove', e => {
+    hobbyTrack.scrollLeft = scrollLeft + (touchStartX - e.touches[0].clientX);
+  });
+}
