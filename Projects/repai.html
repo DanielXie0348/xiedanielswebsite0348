@@ -6,7 +6,7 @@
   <title>RepAI — Daniel Xie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="../style.css"/>
   <style>
     .proj-page { background: var(--bg); min-height: 100vh; padding-top: 64px; }
 
@@ -222,7 +222,7 @@
     <!-- HEADER -->
     <div class="proj-header">
       <div class="proj-header-inner">
-        <a href="index.html#projects" class="proj-back">← Back to projects</a>
+        <a href="../index.html#projects" class="proj-back">← Back to projects</a>
         <div class="proj-header-top">
           <div class="proj-header-left">
             <span class="proj-page-num">01 — Project</span>
@@ -249,69 +249,89 @@
     </div>
 
     <!-- BODY -->
-    <div class="proj-body-wrap">
+    <!-- BODY -->
+<div class="proj-body-wrap">
 
-      <div class="proj-writeup">
-        <h2>Overview</h2>
-        <p>
-          RepAI is a PID-controlled autonomous line follower built entirely from scratch —
-          custom PCB, motor driver circuitry, and STM32-based firmware. The goal was to
-          design a robot that could follow a line path with sub-5mm error at high speed,
-          with no off-the-shelf controller boards.
-        </p>
+  <div class="proj-writeup">
+    <h2>Overview</h2>
+    <p>
+      RepAI is a real-time AI workout assistant that uses your webcam to count reps, 
+      track exercise stages, and give live feedback — no wearables, no gym equipment 
+      required. It runs entirely on-device using computer vision and pose estimation.
+    </p>
 
-        <h2>The Challenge</h2>
-        <p>
-          Designing the hardware and firmware simultaneously meant tight feedback loops
-          between schematic iterations and control tuning. The motor driver needed to
-          handle back-EMF safely while the STM32 ran PID loops fast enough to stay
-          responsive at 1.2 m/s.
-        </p>
+    <h2>How It Works</h2>
+    <p>
+      Every frame from the webcam is passed through YOLOv8's pose estimation model, 
+      which detects 17 body keypoints in real time. From those keypoints, joint angles 
+      are calculated using vector math — for example, the shoulder, elbow, and wrist 
+      points define the elbow angle used to track a curl. Each exercise has its own 
+      angle thresholds that define the "up" and "down" stages, and a rep is counted 
+      every time the full range of motion is completed.
+    </p>
+    <p>
+      The system also handles side detection automatically — it compares the visibility 
+      confidence of left vs right keypoints and maps whichever side is more visible to 
+      the active tracking points. This means it works regardless of which side you're 
+      facing the camera from.
+    </p>
 
-        <h2>What I Built</h2>
-        <p>
-          Schematic capture and PCB layout in KiCad, motor driver selection and thermal
-          analysis, STM32 firmware in embedded C with interrupt-driven encoder feedback,
-          and iterative PID tuning on hardware.
-        </p>
-        <ul>
-          <li>Custom 2-layer PCB designed in KiCad, manufactured and assembled</li>
-          <li>STM32F4 firmware in embedded C with interrupt-driven encoder feedback</li>
-          <li>PID loop tuned on hardware — sub-5mm path error at 1.2 m/s</li>
-          <li>Motor driver with back-EMF protection and current limiting</li>
-        </ul>
+    <h2>Exercises Supported</h2>
+    <ul>
+      <li>Bicep curls — elbow angle tracking (shoulder → elbow → wrist)</li>
+      <li>Squats — knee angle tracking with stage detection</li>
+      <li>Lateral raises — shoulder abduction angle</li>
+      <li>Overhead press — elbow and shoulder range of motion</li>
+    </ul>
 
-        <h2>Results</h2>
-        <p>
-          Stable path tracking with sub-5mm error at 1.2 m/s sustained. The system
-          handled sharp corners and varying surface reflectivity without manual retuning.
-        </p>
+    <h2>Architecture</h2>
+    <p>
+      The codebase is structured around a base <code>ExerciseBase</code> class that 
+      handles rep counting, stage tracking, and a 3-second countdown delay before 
+      tracking begins. Each exercise inherits from this base and implements its own 
+      <code>process()</code> method with custom angle logic. A Flask server was also 
+      built to expose the feed over a local network, allowing the output to be viewed 
+      in a browser.
+    </p>
+
+    <h2>What I Learned</h2>
+    <p>
+      Building RepAI taught me how to work with real-time ML inference pipelines and 
+      the tradeoffs between model accuracy and frame latency. Getting the angle 
+      thresholds right for each exercise required a lot of iteration — small changes 
+      had a big impact on false positives. It also pushed me to think carefully about 
+      code architecture, keeping each exercise modular and easy to extend.
+    </p>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="proj-sidebar">
+    <div class="proj-sidebar-block">
+      <div class="proj-sidebar-title">Quick Facts</div>
+      <div class="proj-sidebar-row">
+        <span class="proj-sidebar-key">Type</span>
+        <span class="proj-sidebar-val">Computer Vision</span>
       </div>
-
-      <!-- SIDEBAR -->
-      <div class="proj-sidebar">
-        <div class="proj-sidebar-block">
-          <div class="proj-sidebar-title">Quick Facts</div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Type</span>
-            <span class="proj-sidebar-val">Hardware + Firmware</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Year</span>
-            <span class="proj-sidebar-val">2024</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Max Speed</span>
-            <span class="proj-sidebar-val">1.2 m/s</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Path Error</span>
-            <span class="proj-sidebar-val">&lt;5mm</span>
-          </div>
-        </div>
+      <div class="proj-sidebar-row">
+        <span class="proj-sidebar-key">Model</span>
+        <span class="proj-sidebar-val">YOLOv8n-pose</span>
       </div>
-
+      <div class="proj-sidebar-row">
+        <span class="proj-sidebar-key">Input</span>
+        <span class="proj-sidebar-val">1280×720 Webcam</span>
+      </div>
+      <div class="proj-sidebar-row">
+        <span class="proj-sidebar-key">Exercises</span>
+        <span class="proj-sidebar-val">4</span>
+      </div>
+      <div class="proj-sidebar-row">
+        <span class="proj-sidebar-key">Year</span>
+        <span class="proj-sidebar-val">2024</span>
+      </div>
     </div>
+  </div>
+
+</div>
 
     <!-- GALLERY -->
     <div class="proj-gallery-wrap">
