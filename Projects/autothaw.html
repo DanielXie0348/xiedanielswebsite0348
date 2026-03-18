@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RepAI — Daniel Xie</title>
+  <title>AutoThaw — Daniel Xie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../style.css"/>
@@ -70,16 +70,55 @@
       background: var(--text); color: var(--bg);
     }
 
-    /* HERO IMAGE */
-    .proj-hero-img {
-      width: 100%; height: 420px;
-      overflow: hidden; background: var(--bg2);
+    /* PHOTO SLIDER */
+        .proj-slider {
+      width: 100%;
       border-bottom: 1px solid var(--border);
+      background: var(--bg2);
     }
-    .proj-hero-img img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
+    .proj-slides-wrap {
+      width: 100%;
+      overflow: hidden;
+      height: 480px;
+    }
+    .proj-slides-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    .proj-slides-track img {
+      flex: 0 0 50%;
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
       filter: saturate(0.92);
+      border-right: 1px solid var(--border);
+    }
+    .proj-slides-track img:last-child { border-right: none; }
+    .proj-slider-controls {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 5%;
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+    .proj-slider-controls button {
+      width: 36px; height: 36px;
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); font-family: var(--fmono);
+      font-size: 0.9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .proj-slider-controls button:hover { background: var(--text); color: var(--bg); }
+    .ps-counter {
+      font-family: var(--fmono); font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.1em;
+    }
+    @media (max-width: 600px) {
+      .proj-slides-wrap { height: 260px; }
+      .proj-slides-track img { flex: 0 0 100%; width: 100%; }
     }
 
     /* BODY */
@@ -118,6 +157,43 @@
       color: var(--accent); font-family: var(--fmono);
     }
 
+    /* INLINE IMAGES */
+    .proj-img-inline {
+      width: 100%;
+      margin: 1.75rem 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .proj-img-inline img {
+      width: 100%; display: block;
+      object-fit: cover;
+      filter: saturate(0.92);
+      transition: filter 0.3s;
+    }
+    .proj-img-inline:hover img { filter: saturate(1.05); }
+    .proj-img-caption {
+      font-family: var(--fmono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      padding: 0.6rem 0.85rem;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .proj-img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin: 1.75rem 0;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+    .proj-img-pair .proj-img-inline {
+      margin: 0;
+      border: none;
+    }
+
     /* SIDEBAR */
     .proj-sidebar {
       position: sticky; top: 84px;
@@ -152,49 +228,13 @@
       color: var(--text); text-align: right;
     }
 
-    /* GALLERY */
-    .proj-gallery-wrap {
-      background: var(--cream);
-      border-top: 1px solid var(--border);
-      padding: 4rem 0;
-    }
-    .proj-gallery-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 5%;
-    }
-    .proj-gallery-inner .stag { margin-bottom: 1.5rem; }
-    .proj-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .proj-gallery-grid .gi {
-      overflow: hidden; aspect-ratio: 4/3;
-      background: var(--bg);
-    }
-    .proj-gallery-grid .gi:first-child {
-      grid-column: span 2; aspect-ratio: 16/9;
-    }
-    .proj-gallery-grid .gi img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.4s ease, filter 0.3s;
-      filter: saturate(0.9);
-    }
-    .proj-gallery-grid .gi:hover img {
-      transform: scale(1.04); filter: saturate(1.1);
-    }
-
     @media (max-width: 900px) {
       .proj-body-wrap { grid-template-columns: 1fr; gap: 3rem; }
       .proj-sidebar { position: static; }
-      .proj-gallery-grid { grid-template-columns: repeat(2,1fr); }
-      .proj-gallery-grid .gi:first-child { grid-column: span 2; }
     }
-    @media (max-width: 580px) {
-      .proj-hero-img { height: 260px; }
-      .proj-gallery-grid { grid-template-columns: 1fr; }
-      .proj-gallery-grid .gi:first-child { grid-column: span 1; }
+    @media (max-width: 600px) {
+      .proj-slides { height: 260px; }
+      .proj-img-pair { grid-template-columns: 1fr; }
       .proj-header-top { flex-direction: column; }
     }
   </style>
@@ -205,13 +245,13 @@
 
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-name">Daniel Xie</a>
+      <a href="../index.html" class="nav-name">Daniel Xie</a>
       <ul class="nav-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#skills">Skills</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#engineer">Me</a></li>
-        <li><a href="index.html#contact" class="nav-hire">Contact</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#engineer">Me</a></li>
+        <li><a href="../index.html#contact" class="nav-hire">Contact</a></li>
       </ul>
       <button class="burger" id="burger"><span></span><span></span></button>
     </div>
@@ -228,110 +268,124 @@
             <span class="proj-page-num">02 — Project</span>
             <h1 class="proj-page-title">AutoThaw</h1>
             <div class="proj-page-pills">
-              <span>Robotics</span>
-              <span>Embedded C</span>
-              <span>PCB Design</span>
-              <span>STM32</span>
-              <span>KiCad</span>
+              <span>ESP32</span>
+              <span>C++</span>
+              <span>Python</span>
+              <span>SolidWorks</span>
+              <span>Gemini API</span>
+              <span>ElevenLabs</span>
             </div>
           </div>
           <div class="proj-header-links">
             <a href="#" target="_blank">GitHub ↗</a>
-            <a href="#" target="_blank">Demo ↗</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- HERO IMAGE -->
-    <div class="proj-hero-img">
-      <img src="repai-hero.jpg" alt="RepAI"/>
-    </div>
-
     <!-- BODY -->
-<div class="proj-body-wrap">
+    <div class="proj-body-wrap">
 
-  <div class="proj-writeup">
-    <h2>Overview</h2>
-    <p>
-      AutoThaw is an ESP32-based automatic driveway salt dispenser that eliminates the need to 
-      manually salt your driveway before a snowstorm. It pulls live weather API data to detect 
-      incoming freezing conditions and autonomously triggers salt distribution — no manual 
-      intervention needed.
-    </p>
+      <div class="proj-writeup">
 
-    <h2>Mechanical Design</h2>
-    <p>
-      The entire enclosure was designed from scratch in SolidWorks and 3D printed. The DC motor 
-      was mounted into the dispenser hub using a press interference fit with tight tolerances, 
-      ensuring zero slop in the drivetrain without any fasteners. The enclosure was designed 
-      around the electronics, keeping the assembly compact and weather-appropriate.
-    </p>
+        <h2>Overview</h2>
+        <p>
+          AutoThaw is an ESP32-based automatic driveway salt dispenser that eliminates the need to
+          manually salt your driveway before a snowstorm. It pulls live weather API data to detect
+          incoming freezing conditions and autonomously triggers salt distribution — no manual
+          intervention needed.
+        </p>
+        <!-- Show photo of entire design-->
+        <div class="proj-img-inline">
+          <img src="autothaw-design.jpg" alt="AutoThaw design"/>
+          <div class="proj-img-caption">Complete AutoThaw design</div>
+        </div>
 
-    <h2>Electronics & Firmware</h2>
-    <p>
-      Powered by a 9V battery driving the DC motor through the ESP32, the firmware is written 
-      in C++ and handles weather API polling, motor control logic, and network communication. 
-      Tailscale was used to expose the device securely over the network, enabling remote 
-      monitoring and control from anywhere.
-    </p>
+        <h2>Mechanical Design</h2>
+        <p>
+          The entire enclosure was designed from scratch in SolidWorks and 3D printed. The DC motor
+          was mounted into the dispenser hub using a press interference fit with tight tolerances,
+          ensuring zero slop in the drivetrain without any fasteners. The enclosure was designed
+          around the electronics, keeping the assembly compact and weather-appropriate.
+        </p>
 
-    <h2>Software & AI Integration</h2>
-    <p>
-      A Python backend ties the system together — integrating the Gemini API for intelligent 
-      decision-making on when conditions warrant dispensing, and ElevenLabs for voice alerts. 
-      The result is a system that thinks, speaks, and acts on its own.
-    </p>
+        <!-- Insert SolidWorks render or enclosure photo here -->
+        <div class="proj-img-inline">
+          <img src="autothaw-cad1.jpg" alt="SolidWorks enclosure design"/>
+          <div class="proj-img-caption">SolidWorks enclosure design with press interference fit motor mount</div>
+        </div>
+        <div class="proj-img-inline">
+          <img src="autothaw-cad2.jpg" alt="SolidWorks enclosure design"/>
+          <div class="proj-img-caption">SolidWorks enclosure design with press interference fit motor mount</div>
+        </div>
 
-    <ul>
-      <li>SolidWorks enclosure design with press interference fit motor mount</li>
-      <li>ESP32 firmware in C++ with weather API polling and motor control</li>
-      <li>Gemini API integration for intelligent dispensing decisions</li>
-      <li>ElevenLabs voice alerts for system status and warnings</li>
-      <li>Tailscale for secure remote access and monitoring</li>
-      <li>9V battery-powered, fully self-contained unit</li>
-    </ul>
-  </div>
+        <h2>Electronics & Firmware</h2>
+        <p>
+          Powered by a 9V battery driving the DC motor through the ESP32, the firmware is written
+          in C++ and handles weather API polling, motor control logic, and network communication.
+          Tailscale was used to expose the device securely over the network, enabling remote
+          monitoring and control from anywhere.
+        </p>
 
-  <!-- SIDEBAR -->
-  <div class="proj-sidebar">
-    <div class="proj-sidebar-block">
-      <div class="proj-sidebar-title">Quick Facts</div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Type</span>
-        <span class="proj-sidebar-val">Hardware + Software</span>
+        <!-- Insert electronics/wiring photo here -->
+        <div class="proj-img-inline">
+          <img src="autothaw-electronics.jpg" alt="Electronics"/>
+          <div class="proj-img-caption">ESP32 wiring and motor driver</div>
+        </div>
+
+        <h2>Software & AI Integration</h2>
+        <p>
+          A Python backend ties the system together — integrating the Gemini API for intelligent
+          decision-making on when conditions warrant dispensing, and ElevenLabs for voice alerts.
+          The result is a system that thinks, speaks, and acts on its own.
+        </p>
+
+        <ul>
+          <li>SolidWorks enclosure design with press interference fit motor mount</li>
+          <li>ESP32 firmware in C++ with weather API polling and motor control</li>
+          <li>Gemini API integration for intelligent dispensing decisions</li>
+          <li>ElevenLabs voice alerts for system status and warnings</li>
+          <li>Tailscale for secure remote access and monitoring</li>
+          <li>9V battery-powered, fully self-contained unit</li>
+        </ul>
+
+        <h2>What I Learned</h2>
+        <p>
+          AutoThaw pushed me to think across the full stack simultaneously — mechanical tolerancing,
+          firmware logic, and API integration all had to work together. Getting the interference fit
+          right took several print iterations, and integrating multiple external APIs taught me how
+          to architect software around unreliable network conditions.
+        </p>
+
       </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">MCU</span>
-        <span class="proj-sidebar-val">ESP32</span>
-      </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Power</span>
-        <span class="proj-sidebar-val">9V Battery</span>
-      </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">CAD</span>
-        <span class="proj-sidebar-val">SolidWorks</span>
-      </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Year</span>
-        <span class="proj-sidebar-val">2026</span>
-      </div>
-    </div>
-  </div>
 
-  </div>
-
-    <!-- GALLERY -->
-    <div class="proj-gallery-wrap">
-      <div class="proj-gallery-inner">
-        <div class="stag">Photos</div>
-        <div class="proj-gallery-grid">
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
+      <!-- SIDEBAR -->
+      <div class="proj-sidebar">
+        <div class="proj-sidebar-block">
+          <div class="proj-sidebar-title">Quick Facts</div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Type</span>
+            <span class="proj-sidebar-val">Hardware + Software</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">MCU</span>
+            <span class="proj-sidebar-val">ESP32</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Power</span>
+            <span class="proj-sidebar-val">9V Battery</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">CAD</span>
+            <span class="proj-sidebar-val">SolidWorks</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Year</span>
+            <span class="proj-sidebar-val">2026</span>
+          </div>
         </div>
       </div>
+
     </div>
 
   </div>
@@ -343,11 +397,6 @@
     </div>
   </footer>
 
-  <script>
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (burger && mobileMenu) burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  </script>
 
 </body>
 </html>
