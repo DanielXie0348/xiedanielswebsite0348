@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WARG Drone Ground Station — Daniel Xie</title>
+  <title>FlexiBot — Daniel Xie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../style.css"/>
   <style>
     .proj-page { background: var(--bg); min-height: 100vh; padding-top: 64px; }
 
-    /* HEADER */
     .proj-header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -70,7 +69,6 @@
       background: var(--text); color: var(--bg);
     }
 
-    /* BODY */
     .proj-body-wrap {
       max-width: 1200px; margin: 0 auto;
       padding: 5rem 5%;
@@ -80,7 +78,6 @@
       align-items: start;
     }
 
-    /* WRITE-UP */
     .proj-writeup h2 {
       font-family: var(--fd);
       font-size: 2rem; letter-spacing: 0.04em;
@@ -106,65 +103,47 @@
       color: var(--accent); font-family: var(--fmono);
     }
 
-    /* INLINE IMAGES */
     .proj-img-inline {
-      width: 100%;
-      margin: 1.75rem 0;
-      overflow: hidden;
-      border: 1px solid var(--border);
+      width: 100%; margin: 1.75rem 0;
+      overflow: hidden; border: 1px solid var(--border);
       background: var(--bg);
     }
     .proj-img-inline img {
-      width: 100%; display: block;
-      object-fit: cover;
-      filter: saturate(0.92);
-      transition: filter 0.3s;
+      width: 100%; display: block; object-fit: cover;
+      filter: saturate(0.92); transition: filter 0.3s;
     }
     .proj-img-inline:hover img { filter: saturate(1.05); }
     .proj-img-caption {
-      font-family: var(--fmono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
+      font-family: var(--fmono); font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.08em;
       padding: 0.6rem 0.85rem;
       border-top: 1px solid var(--border);
       background: var(--cream);
     }
     .proj-img-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      margin: 1.75rem 0;
-      border: 1px solid var(--border);
-      background: var(--border);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; margin: 1.75rem 0;
+      border: 1px solid var(--border); background: var(--border);
     }
-    .proj-img-pair .proj-img-inline {
-      margin: 0;
-      border: none;
-    }
+    .proj-img-pair .proj-img-inline { margin: 0; border: none; }
 
-    /* SIDEBAR */
     .proj-sidebar {
       position: sticky; top: 84px;
       display: flex; flex-direction: column; gap: 1.5rem;
     }
     .proj-sidebar-block {
-      border: 1px solid var(--border);
-      background: var(--white);
+      border: 1px solid var(--border); background: var(--white);
     }
     .proj-sidebar-title {
       font-family: var(--fmono); font-size: 0.63rem;
       color: var(--accent); letter-spacing: 0.14em;
       text-transform: uppercase; padding: 0.85rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--cream);
+      border-bottom: 1px solid var(--border); background: var(--cream);
     }
     .proj-sidebar-row {
       display: flex; justify-content: space-between;
-      align-items: baseline;
-      padding: 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
+      align-items: baseline; padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border); gap: 1rem;
     }
     .proj-sidebar-row:last-child { border-bottom: none; }
     .proj-sidebar-key {
@@ -207,142 +186,149 @@
 
   <div class="proj-page">
 
-    <!-- HEADER -->
     <div class="proj-header">
       <div class="proj-header-inner">
         <a href="../index.html#projects" class="proj-back">← Back to projects</a>
         <div class="proj-header-top">
           <div class="proj-header-left">
-            <span class="proj-page-num">04 — Project</span>
-            <h1 class="proj-page-title">WARG Drone Ground Station</h1>
+            <span class="proj-page-num">05 — Project</span>
+            <h1 class="proj-page-title">FlexiBot</h1>
             <div class="proj-page-pills">
-              <span>Python</span>
-              <span>MAVLink</span>
-              <span>OpenCV</span>
-              <span>Multiprocessing</span>
-              <span>Computer Vision</span>
-              <span>GitHub Actions</span>
+              <span>SolidWorks</span>
+              <span>FEA</span>
+              <span>3D Printing</span>
+              <span>Arduino</span>
+              <span>6061-T6</span>
             </div>
-          </div>
-          <div class="proj-header-links">
-            <a href="#" target="_blank">GitHub ↗</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- BODY -->
     <div class="proj-body-wrap">
 
       <div class="proj-writeup">
 
         <h2>Overview</h2>
         <p>
-          As part of onboarding onto Waterloo Aerial Robotics Group's Autonomy subteam,
-          I completed a two-phase technical bootcamp building real components of WARG's
-          drone autonomy stack — from computer vision to a full multi-process ground
-          station communicating with a drone over MAVLink.
+          FlexiBot is a Wolverine-inspired wearable robot arm designed for a first-year
+          mechanical engineering children's toy design competition. The brief was simple:
+          design something a child could wear, that was structurally sound, safe, and
+          actually fun. The result was a wrist-mounted extendable claw mechanism that
+          went through three full design iterations before being 3D printed in PLA with
+          6061-T6 aluminum structural components — and won first place.
         </p>
 
-        <h2>Phase 1 — Colour Detection</h2>
+        <div class="proj-img-inline">
+          <img src="flexibot-img1.png" alt="FlexiBot CAD Design"/>
+          <div class="proj-img-caption">Joint angle calculation — arctan2 vector method always returns the smaller interior angle</div>
+        </div>
+
+        <h2>Design Iterations</h2>
         <p>
-          The first phase involved implementing a real-time HSV colour detection algorithm
-          in OpenCV to identify red and blue objects in camera frames. Rather than working
-          in RGB, the pipeline converts frames to HSV colour space — separating hue from
-          brightness to make detection robust under varying lighting conditions.
+          The first iteration used a hydraulic actuation concept — fluid-driven pistons
+          extending the claw arms. While mechanically interesting, the hydraulic system
+          introduced too much complexity for a wearable toy: sealing, fluid containment,
+          and pressure management were all impractical at the scale and safety requirements
+          of a children's product. It was scrapped after the concept phase.
         </p>
         <p>
-          Two detector classes were implemented — DetectRed and DetectBlue — each with
-          carefully tuned HSV threshold ranges. Red required special handling since it
-          wraps around the hue wheel in OpenCV's 0–180° representation, requiring two
-          separate masks merged together. All 6 unit tests passed with Pylint 10.00/10,
-          Flake8 clean, and Black formatted.
+          The second iteration replaced hydraulics with an Arduino-controlled servo
+          system. A single servo drove a linkage that extended and retracted the three
+          claw arms simultaneously. This worked mechanically but introduced weight and
+          wiring that made the wearable uncomfortable and fragile. The Arduino added
+          unnecessary complexity for what was fundamentally a simple extend/retract motion.
+        </p>
+        <p>
+          The final iteration simplified back to a manual spring-loaded mechanism —
+          lighter, more reliable, and child-safe. The design focus shifted to structural
+          integrity, material selection, and manufacturability.
         </p>
 
-        <h2>Phase 2 — Multi-Process Drone Ground Station</h2>
+        <h2>Structural Analysis</h2>
         <p>
-          The second phase was building a ground station system that monitors and controls
-          a drone in real time using the MAVLink protocol. The system needed to handle
-          heartbeat monitoring, telemetry parsing, and flight command logic all
-          simultaneously — requiring a multi-process architecture with inter-process
-          queue communication.
+          Material selection was driven by two competing constraints — strength and
+          child safety. The claw arms needed to flex without fracturing under repeated
+          use, while the wrist mount needed to remain rigid. FEA in SolidWorks was used to
+          simulate displacement and stress distribution under representative loads,
+          informing the decision to use PLA for the flexible arm components and
+          6061-T6 aluminum for the structural wrist mount hardware.
         </p>
         <p>
-          Four workers were implemented, each running as an independent process:
+          Moduli analysis confirmed that PLA's lower Young's modulus made it appropriate
+          for the flexing claw geometry, while the aluminum mount could handle the
+          repeated bending loads at the wrist interface without fatigue. Wall thicknesses
+          and fillet radii were adjusted across iterations based on the FEA results to
+          reduce stress concentrations at high-load regions.
+        </p>
+        <div class="proj-img-inline">
+          <img src="flexibot-img2.png" alt="FlexiBot FEA Analysis"/>
+          <div class="proj-img-caption">SolidWorks FEA - displacement analysis under load</div>
+        </div>
+
+        <h2>Manufacturing & Assembly</h2>
+        <p>
+          The final design was modelled as a fully constrained SolidWorks assembly with
+          motion studies validating the claw extension kinematics before committing to
+          print. Parts were oriented for printability — minimising support material and
+          ensuring layer lines ran perpendicular to primary load directions. The assembly
+          was rapid prototyped and iterated on before the final print.
         </p>
         <ul>
-          <li>
-            <strong>Heartbeat Sender</strong> — sends MAVLink HEARTBEAT (0) messages to
-            the drone once per second to maintain connection
-          </li>
-          <li>
-            <strong>Heartbeat Receiver</strong> — monitors incoming heartbeats, tracking
-            connection state and flagging disconnection after 5 consecutive missed messages
-          </li>
-          <li>
-            <strong>Telemetry Worker</strong> — receives ATTITUDE (30) and
-            LOCAL_POSITION_NED (32) messages from the drone, fusing them into a
-            TelemetryData object with 1-second timeout handling
-          </li>
-          <li>
-            <strong>Command Worker</strong> — reads telemetry data and sends
-            COMMAND_LONG (76) messages to correct drone yaw and altitude in real time,
-            keeping the drone locked on a target within ±5° and ±0.5m
-          </li>
+          <li>3 full design iterations — hydraulic, Arduino servo, and final spring-loaded</li>
+          <li>FEA displacement and stress analysis in SolidWorks</li>
+          <li>PLA claw arms + 6061-T6 aluminum wrist mount — 700g total assembly</li>
+          <li>SolidWorks motion studies validating extension kinematics</li>
+          <li>Designed to DFM guidelines for 3D printability</li>
+          <li>Won first place in children's toy design competition</li>
         </ul>
-
-        <h2>Architecture</h2>
-        <p>
-          Workers communicate exclusively through QueueProxyWrapper objects — a
-          thread-safe queue abstraction that handles synchronization across processes.
-          Each worker runs a continuous loop reading from input queues, executing its
-          logic, and writing results to output queues. The main thread orchestrates
-          process startup, shutdown, and inter-worker wiring.
-        </p>
-        <p>
-          All workers were integration tested against mock drone processes, with test
-          logs validated for correctness. The full codebase was reviewed and merged via
-          pull request on the WARG GitHub repository.
-        </p>
 
         <h2>What I Learned</h2>
         <p>
-          This project was my first time working inside a real team's production codebase
-          with enforced standards. Hitting Pylint 10.00/10 consistently taught me to write
-          clean, well-typed Python from the start rather than cleaning up at the end.
-          Working with MAVLink gave me a solid foundation in drone communication protocols
-          and how real autonomy systems are structured at the software level.
+          FlexiBot was my first experience running a full design loop from concept
+          through FEA to physical prototype. The biggest lesson was how much the
+          manufacturing method constrains the design — decisions that looked fine in
+          CAD caused real problems in print orientation and support removal. Learning
+          to design with the process in mind, not just the geometry, was the most
+          transferable skill from this project.
         </p>
 
       </div>
 
-      <!-- SIDEBAR -->
       <div class="proj-sidebar">
         <div class="proj-sidebar-block">
           <div class="proj-sidebar-title">Quick Facts</div>
           <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Team</span>
-            <span class="proj-sidebar-val">WARG Autonomy</span>
+            <span class="proj-sidebar-key">Type</span>
+            <span class="proj-sidebar-val">Mechanical Design</span>
           </div>
           <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Language</span>
-            <span class="proj-sidebar-val">Python 3.11</span>
+            <span class="proj-sidebar-key">CAD</span>
+            <span class="proj-sidebar-val">SolidWorks</span>
           </div>
           <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Protocol</span>
-            <span class="proj-sidebar-val">MAVLink</span>
+            <span class="proj-sidebar-key">FEA</span>
+            <span class="proj-sidebar-val">Ansys</span>
           </div>
           <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Pylint</span>
-            <span class="proj-sidebar-val">10.00 / 10</span>
+            <span class="proj-sidebar-key">Materials</span>
+            <span class="proj-sidebar-val">PLA + 6061-T6</span>
           </div>
           <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Workers</span>
-            <span class="proj-sidebar-val">4</span>
+            <span class="proj-sidebar-key">Mass</span>
+            <span class="proj-sidebar-val">700g</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Iterations</span>
+            <span class="proj-sidebar-val">3</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Result</span>
+            <span class="proj-sidebar-val">1st place</span>
           </div>
           <div class="proj-sidebar-row">
             <span class="proj-sidebar-key">Year</span>
-            <span class="proj-sidebar-val">2025</span>
+            <span class="proj-sidebar-val">2024</span>
           </div>
         </div>
       </div>

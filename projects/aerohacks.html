@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RepAI — Daniel Xie</title>
+  <title>Drone Vision & Control — Daniel Xie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../style.css"/>
   <style>
     .proj-page { background: var(--bg); min-height: 100vh; padding-top: 64px; }
 
-    /* HEADER */
     .proj-header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -70,19 +69,6 @@
       background: var(--text); color: var(--bg);
     }
 
-    /* HERO IMAGE */
-    .proj-hero-img {
-      width: 100%; height: 420px;
-      overflow: hidden; background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-    }
-    .proj-hero-img img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      filter: saturate(0.92);
-    }
-
-    /* BODY */
     .proj-body-wrap {
       max-width: 1200px; margin: 0 auto;
       padding: 5rem 5%;
@@ -92,7 +78,6 @@
       align-items: start;
     }
 
-    /* WRITE-UP */
     .proj-writeup h2 {
       font-family: var(--fd);
       font-size: 2rem; letter-spacing: 0.04em;
@@ -118,28 +103,47 @@
       color: var(--accent); font-family: var(--fmono);
     }
 
-    /* SIDEBAR */
+    .proj-img-inline {
+      width: 100%; margin: 1.75rem 0;
+      overflow: hidden; border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .proj-img-inline img {
+      width: 100%; display: block; object-fit: cover;
+      filter: saturate(0.92); transition: filter 0.3s;
+    }
+    .proj-img-inline:hover img { filter: saturate(1.05); }
+    .proj-img-caption {
+      font-family: var(--fmono); font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.08em;
+      padding: 0.6rem 0.85rem;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .proj-img-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; margin: 1.75rem 0;
+      border: 1px solid var(--border); background: var(--border);
+    }
+    .proj-img-pair .proj-img-inline { margin: 0; border: none; }
+
     .proj-sidebar {
       position: sticky; top: 84px;
       display: flex; flex-direction: column; gap: 1.5rem;
     }
     .proj-sidebar-block {
-      border: 1px solid var(--border);
-      background: var(--white);
+      border: 1px solid var(--border); background: var(--white);
     }
     .proj-sidebar-title {
       font-family: var(--fmono); font-size: 0.63rem;
       color: var(--accent); letter-spacing: 0.14em;
       text-transform: uppercase; padding: 0.85rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--cream);
+      border-bottom: 1px solid var(--border); background: var(--cream);
     }
     .proj-sidebar-row {
       display: flex; justify-content: space-between;
-      align-items: baseline;
-      padding: 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
+      align-items: baseline; padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border); gap: 1rem;
     }
     .proj-sidebar-row:last-child { border-bottom: none; }
     .proj-sidebar-key {
@@ -152,49 +156,12 @@
       color: var(--text); text-align: right;
     }
 
-    /* GALLERY */
-    .proj-gallery-wrap {
-      background: var(--cream);
-      border-top: 1px solid var(--border);
-      padding: 4rem 0;
-    }
-    .proj-gallery-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 5%;
-    }
-    .proj-gallery-inner .stag { margin-bottom: 1.5rem; }
-    .proj-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .proj-gallery-grid .gi {
-      overflow: hidden; aspect-ratio: 4/3;
-      background: var(--bg);
-    }
-    .proj-gallery-grid .gi:first-child {
-      grid-column: span 2; aspect-ratio: 16/9;
-    }
-    .proj-gallery-grid .gi img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.4s ease, filter 0.3s;
-      filter: saturate(0.9);
-    }
-    .proj-gallery-grid .gi:hover img {
-      transform: scale(1.04); filter: saturate(1.1);
-    }
-
     @media (max-width: 900px) {
       .proj-body-wrap { grid-template-columns: 1fr; gap: 3rem; }
       .proj-sidebar { position: static; }
-      .proj-gallery-grid { grid-template-columns: repeat(2,1fr); }
-      .proj-gallery-grid .gi:first-child { grid-column: span 2; }
     }
-    @media (max-width: 580px) {
-      .proj-hero-img { height: 260px; }
-      .proj-gallery-grid { grid-template-columns: 1fr; }
-      .proj-gallery-grid .gi:first-child { grid-column: span 1; }
+    @media (max-width: 600px) {
+      .proj-img-pair { grid-template-columns: 1fr; }
       .proj-header-top { flex-direction: column; }
     }
   </style>
@@ -205,13 +172,13 @@
 
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-name">Daniel Xie</a>
+      <a href="../index.html" class="nav-name">Daniel Xie</a>
       <ul class="nav-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#skills">Skills</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#engineer">Me</a></li>
-        <li><a href="index.html#contact" class="nav-hire">Hire Me</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#engineer">Me</a></li>
+        <li><a href="../index.html#contact" class="nav-hire">Contact</a></li>
       </ul>
       <button class="burger" id="burger"><span></span><span></span></button>
     </div>
@@ -219,110 +186,167 @@
 
   <div class="proj-page">
 
-    <!-- HEADER -->
     <div class="proj-header">
       <div class="proj-header-inner">
         <a href="../index.html#projects" class="proj-back">← Back to projects</a>
         <div class="proj-header-top">
           <div class="proj-header-left">
-            <span class="proj-page-num">02 — Project</span>
-            <h1 class="proj-page-title">AutoThaw</h1>
+            <span class="proj-page-num">03 — Project</span>
+            <h1 class="proj-page-title">Drone Vision & Control</h1>
             <div class="proj-page-pills">
-              <span>Robotics</span>
-              <span>Embedded C</span>
-              <span>PCB Design</span>
-              <span>STM32</span>
-              <span>KiCad</span>
+              <span>Python</span>
+              <span>OpenCV</span>
+              <span>Roboflow</span>
+              <span>Computer Vision</span>
+              <span>TCP</span>
             </div>
           </div>
           <div class="proj-header-links">
-            <a href="#" target="_blank">GitHub ↗</a>
-            <a href="#" target="_blank">Demo ↗</a>
+            <a href="https://github.com/DanielXie0348/mcgillaerohacks" target="_blank">GitHub ↗</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- HERO IMAGE -->
-    <div class="proj-hero-img">
-      <img src="repai-hero.jpg" alt="RepAI"/>
-    </div>
-
-    <!-- BODY -->
     <div class="proj-body-wrap">
 
       <div class="proj-writeup">
+
         <h2>Overview</h2>
         <p>
-          RepAI is a PID-controlled autonomous line follower built entirely from scratch —
-          custom PCB, motor driver circuitry, and STM32-based firmware. The goal was to
-          design a robot that could follow a line path with sub-5mm error at high speed,
-          with no off-the-shelf controller boards.
+          A real-time drone stabilization system built under tight time constraints.
+          The objective was to keep a drone hovering at exactly 0.5 metres off the
+          ground for 60 seconds — without any manual input. The solution was a Python
+          computer vision pipeline that processed live dual-camera input and streamed
+          correction commands directly to the drone over TCP.
         </p>
 
-        <h2>The Challenge</h2>
+        <div class="proj-img-inline">
+          <img src="aerohacks-drone.jpg" alt="Drone setup"/>
+          <div class="proj-img-caption">The drone platform used for the hover challenge</div>
+        </div>
+
+        <h2>The Problem</h2>
         <p>
-          Designing the hardware and firmware simultaneously meant tight feedback loops
-          between schematic iterations and control tuning. The motor driver needed to
-          handle back-EMF safely while the STM32 ran PID loops fast enough to stay
-          responsive at 1.2 m/s.
+          Drones at low altitude are notoriously difficult to stabilize autonomously.
+          Small perturbations in altitude or lateral position compound quickly, and
+          any correction logic needs to be fast enough to respond before drift becomes
+          unrecoverable. The challenge was building that logic from scratch with only
+          camera input as the sensing modality — no reliable IMU data, no external
+          positioning system.
+        </p>
+        <p>
+          The drone's onboard accelerometers proved unreliable at the scale of
+          corrections we needed, introducing too much noise to act on directly.
+          This forced us to rely entirely on vision for state estimation — a harder
+          problem with higher latency, but ultimately more robust given the hardware
+          constraints we were working with.
         </p>
 
-        <h2>What I Built</h2>
+        <h2>Vision Pipeline</h2>
         <p>
-          Schematic capture and PCB layout in KiCad, motor driver selection and thermal
-          analysis, STM32 firmware in embedded C with interrupt-driven encoder feedback,
-          and iterative PID tuning on hardware.
+          Two cameras provided overlapping fields of view of the drone and the ground
+          below it. Object detection was handled using a Roboflow-trained model,
+          allowing us to reliably identify and track the drone's position relative to
+          the ground plane across frames. Each detection was used to estimate altitude
+          and lateral drift from the 0.5m target hover position.
         </p>
+        <p>
+          The pipeline ran continuously, comparing each new frame against the target
+          state and computing a correction vector. Speed was critical — any latency
+          in the loop translated directly to instability in the hover.
+        </p>
+
+        <div class="proj-img-inline">
+          <img src="aerohacks-code1.jpg" alt="Vision pipeline code"/>
+          <div class="proj-img-caption">Vision pipeline — frame processing and drift estimation</div>
+        </div>
+
+        <h2>Control & Communication</h2>
+        <p>
+          Correction commands were formatted and streamed to the drone over a TCP
+          socket in real time. The communication layer needed to be lightweight and
+          low-latency — each correction had to arrive at the drone fast enough to
+          matter. The control logic translated the vision-derived error into throttle
+          and positional corrections, closing the loop between what the cameras saw
+          and what the drone did.
+        </p>
+
+        <div class="proj-img-inline">
+          <img src="aerohacks-code2.jpg" alt="TCP control code"/>
+          <div class="proj-img-caption">TCP socket command layer — streaming corrections to the drone</div>
+        </div>
+
         <ul>
-          <li>Custom 2-layer PCB designed in KiCad, manufactured and assembled</li>
-          <li>STM32F4 firmware in embedded C with interrupt-driven encoder feedback</li>
-          <li>PID loop tuned on hardware — sub-5mm path error at 1.2 m/s</li>
-          <li>Motor driver with back-EMF protection and current limiting</li>
+          <li>Dual-camera OpenCV pipeline with Roboflow object detection</li>
+          <li>Altitude and lateral drift estimation from visual input alone</li>
+          <li>TCP socket communication for low-latency command streaming</li>
+          <li>Target: stable 0.5m hover maintained for 60 seconds</li>
         </ul>
+        
+        <div class="proj-img-inline">
+          <img src="aerohacks-code3.jpg" alt="Main File"/>
+          <div class="proj-img-caption">Main control file — orchestrating the vision and control systems</div>
+        </div>
 
-        <h2>Results</h2>
+        <h2>Struggles & Lessons</h2>
         <p>
-          Stable path tracking with sub-5mm error at 1.2 m/s sustained. The system
-          handled sharp corners and varying surface reflectivity without manual retuning.
+          The biggest constraint was the accelerometers. We went in expecting to fuse
+          IMU data with camera input for a more robust state estimate, but the onboard
+          sensors were too noisy to be useful at the precision we needed. Pivoting to
+          vision-only meant rethinking the entire estimation approach mid-build —
+          faster iteration under pressure than we'd planned for.
         </p>
+        <p>
+          Camera latency was the other constant battle. A correction computed on a
+          frame that's already 80ms old is acting on stale information — and at
+          0.5m altitude, 80ms is enough for meaningful drift. We spent a significant
+          portion of the build optimizing the pipeline for throughput, cutting
+          unnecessary processing steps to keep the loop as tight as possible.
+        </p>
+        <p>
+          If I were to do it again, I'd start with a dedicated low-latency camera
+          rather than adapting general-purpose hardware, and design the control
+          loop around worst-case latency from the start rather than optimizing
+          reactively.
+        </p>
+
       </div>
 
-      <!-- SIDEBAR -->
       <div class="proj-sidebar">
         <div class="proj-sidebar-block">
           <div class="proj-sidebar-title">Quick Facts</div>
           <div class="proj-sidebar-row">
             <span class="proj-sidebar-key">Type</span>
-            <span class="proj-sidebar-val">Hardware + Firmware</span>
+            <span class="proj-sidebar-val">Computer Vision</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Language</span>
+            <span class="proj-sidebar-val">Python</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Detection</span>
+            <span class="proj-sidebar-val">Roboflow</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Cameras</span>
+            <span class="proj-sidebar-val">2</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Comms</span>
+            <span class="proj-sidebar-val">TCP Socket</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Target</span>
+            <span class="proj-sidebar-val">0.5m / 60s</span>
           </div>
           <div class="proj-sidebar-row">
             <span class="proj-sidebar-key">Year</span>
-            <span class="proj-sidebar-val">2024</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Max Speed</span>
-            <span class="proj-sidebar-val">1.2 m/s</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Path Error</span>
-            <span class="proj-sidebar-val">&lt;5mm</span>
+            <span class="proj-sidebar-val">2025</span>
           </div>
         </div>
       </div>
 
-    </div>
-
-    <!-- GALLERY -->
-    <div class="proj-gallery-wrap">
-      <div class="proj-gallery-inner">
-        <div class="stag">Photos</div>
-        <div class="proj-gallery-grid">
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
-        </div>
-      </div>
     </div>
 
   </div>

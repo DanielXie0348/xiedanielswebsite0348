@@ -10,7 +10,6 @@
   <style>
     .proj-page { background: var(--bg); min-height: 100vh; padding-top: 64px; }
 
-    /* HEADER */
     .proj-header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -70,19 +69,6 @@
       background: var(--text); color: var(--bg);
     }
 
-    /* HERO IMAGE */
-    .proj-hero-img {
-      width: 100%; height: 420px;
-      overflow: hidden; background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-    }
-    .proj-hero-img img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      filter: saturate(0.92);
-    }
-
-    /* BODY */
     .proj-body-wrap {
       max-width: 1200px; margin: 0 auto;
       padding: 5rem 5%;
@@ -92,7 +78,6 @@
       align-items: start;
     }
 
-    /* WRITE-UP */
     .proj-writeup h2 {
       font-family: var(--fd);
       font-size: 2rem; letter-spacing: 0.04em;
@@ -118,28 +103,47 @@
       color: var(--accent); font-family: var(--fmono);
     }
 
-    /* SIDEBAR */
+    .proj-img-inline {
+      width: 100%; margin: 1.75rem 0;
+      overflow: hidden; border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .proj-img-inline img {
+      width: 100%; display: block; object-fit: cover;
+      filter: saturate(0.92); transition: filter 0.3s;
+    }
+    .proj-img-inline:hover img { filter: saturate(1.05); }
+    .proj-img-caption {
+      font-family: var(--fmono); font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.08em;
+      padding: 0.6rem 0.85rem;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .proj-img-pair {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; margin: 1.75rem 0;
+      border: 1px solid var(--border); background: var(--border);
+    }
+    .proj-img-pair .proj-img-inline { margin: 0; border: none; }
+
     .proj-sidebar {
       position: sticky; top: 84px;
       display: flex; flex-direction: column; gap: 1.5rem;
     }
     .proj-sidebar-block {
-      border: 1px solid var(--border);
-      background: var(--white);
+      border: 1px solid var(--border); background: var(--white);
     }
     .proj-sidebar-title {
       font-family: var(--fmono); font-size: 0.63rem;
       color: var(--accent); letter-spacing: 0.14em;
       text-transform: uppercase; padding: 0.85rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--cream);
+      border-bottom: 1px solid var(--border); background: var(--cream);
     }
     .proj-sidebar-row {
       display: flex; justify-content: space-between;
-      align-items: baseline;
-      padding: 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
+      align-items: baseline; padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border); gap: 1rem;
     }
     .proj-sidebar-row:last-child { border-bottom: none; }
     .proj-sidebar-key {
@@ -152,49 +156,12 @@
       color: var(--text); text-align: right;
     }
 
-    /* GALLERY */
-    .proj-gallery-wrap {
-      background: var(--cream);
-      border-top: 1px solid var(--border);
-      padding: 4rem 0;
-    }
-    .proj-gallery-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 5%;
-    }
-    .proj-gallery-inner .stag { margin-bottom: 1.5rem; }
-    .proj-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .proj-gallery-grid .gi {
-      overflow: hidden; aspect-ratio: 4/3;
-      background: var(--bg);
-    }
-    .proj-gallery-grid .gi:first-child {
-      grid-column: span 2; aspect-ratio: 16/9;
-    }
-    .proj-gallery-grid .gi img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.4s ease, filter 0.3s;
-      filter: saturate(0.9);
-    }
-    .proj-gallery-grid .gi:hover img {
-      transform: scale(1.04); filter: saturate(1.1);
-    }
-
     @media (max-width: 900px) {
       .proj-body-wrap { grid-template-columns: 1fr; gap: 3rem; }
       .proj-sidebar { position: static; }
-      .proj-gallery-grid { grid-template-columns: repeat(2,1fr); }
-      .proj-gallery-grid .gi:first-child { grid-column: span 2; }
     }
-    @media (max-width: 580px) {
-      .proj-hero-img { height: 260px; }
-      .proj-gallery-grid { grid-template-columns: 1fr; }
-      .proj-gallery-grid .gi:first-child { grid-column: span 1; }
+    @media (max-width: 600px) {
+      .proj-img-pair { grid-template-columns: 1fr; }
       .proj-header-top { flex-direction: column; }
     }
   </style>
@@ -205,13 +172,13 @@
 
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-name">Daniel Xie</a>
+      <a href="../index.html" class="nav-name">Daniel Xie</a>
       <ul class="nav-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#skills">Skills</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#engineer">Me</a></li>
-        <li><a href="index.html#contact" class="nav-hire">Hire Me</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#engineer">Me</a></li>
+        <li><a href="../index.html#contact" class="nav-hire">Contact</a></li>
       </ul>
       <button class="burger" id="burger"><span></span><span></span></button>
     </div>
@@ -219,7 +186,6 @@
 
   <div class="proj-page">
 
-    <!-- HEADER -->
     <div class="proj-header">
       <div class="proj-header-inner">
         <a href="../index.html#projects" class="proj-back">← Back to projects</a>
@@ -228,121 +194,140 @@
             <span class="proj-page-num">01 — Project</span>
             <h1 class="proj-page-title">RepAI</h1>
             <div class="proj-page-pills">
-              <span>Robotics</span>
-              <span>Embedded C</span>
-              <span>PCB Design</span>
-              <span>STM32</span>
-              <span>KiCad</span>
+              <span>Python</span>
+              <span>YOLOv8</span>
+              <span>OpenCV</span>
+              <span>MediaPipe</span>
+              <span>Flask</span>
             </div>
           </div>
           <div class="proj-header-links">
             <a href="#" target="_blank">GitHub ↗</a>
-            <a href="#" target="_blank">Demo ↗</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- HERO IMAGE -->
-    <div class="proj-hero-img">
-      <img src="repai-hero.jpg" alt="RepAI"/>
-    </div>
+    <div class="proj-body-wrap">
 
-    <!-- BODY -->
-    <!-- BODY -->
-<div class="proj-body-wrap">
+      <div class="proj-writeup">
 
-  <div class="proj-writeup">
-    <h2>Overview</h2>
-    <p>
-      RepAI is a real-time AI workout assistant that uses your webcam to count reps, 
-      track exercise stages, and give live feedback — no wearables, no gym equipment 
-      required. It runs entirely on-device using computer vision and pose estimation.
-    </p>
+        <h2>Overview</h2>
+        <p>
+          RepAI is a real-time AI workout assistant that uses your webcam to count reps,
+          track exercise stages, and provide live feedback on form — no wearables, no
+          gym equipment required. It runs entirely on-device using pose estimation and
+          joint angle analysis.
+        </p>
 
-    <h2>How It Works</h2>
-    <p>
-      Every frame from the webcam is passed through YOLOv8's pose estimation model, 
-      which detects 17 body keypoints in real time. From those keypoints, joint angles 
-      are calculated using vector math — for example, the shoulder, elbow, and wrist 
-      points define the elbow angle used to track a curl. Each exercise has its own 
-      angle thresholds that define the "up" and "down" stages, and a rep is counted 
-      every time the full range of motion is completed.
-    </p>
-    <p>
-      The system also handles side detection automatically — it compares the visibility 
-      confidence of left vs right keypoints and maps whichever side is more visible to 
-      the active tracking points. This means it works regardless of which side you're 
-      facing the camera from.
-    </p>
+        <h2>How It Works</h2>
+        <p>
+          Every frame from the webcam is passed through YOLOv8's pose estimation model,
+          which detects 17 body keypoints in real time at 1280×720. From those keypoints,
+          joint angles are calculated using vector math — the shoulder, elbow, and wrist
+          points define the elbow angle used to track a curl, for example. Each exercise
+          has its own angle thresholds defining the "up" and "down" stages. A rep is
+          counted every time the full range of motion is completed in the correct order —
+          preventing half-reps and out-of-sequence counts from registering.
+        </p>
+        <p>
+          The system also flags incomplete reps in real time. If the joint angle doesn't
+          reach the full contraction or extension threshold, the stage doesn't advance —
+          giving the user live feedback that the rep wasn't completed with full range of
+          motion.
+        </p>
 
-    <h2>Exercises Supported</h2>
-    <ul>
-      <li>Bicep curls — elbow angle tracking (shoulder → elbow → wrist)</li>
-      <li>Squats — knee angle tracking with stage detection</li>
-      <li>Lateral raises — shoulder abduction angle</li>
-      <li>Overhead press — elbow and shoulder range of motion</li>
-    </ul>
+        <div class="proj-img-inline">
+          <img src="repai-code2.jpg" alt="Main inference loop"/>
+          <div class="proj-img-caption">Main inference loop — YOLOv8 per-frame pose estimation with automatic side detection</div>
+        </div>
 
-    <h2>Architecture</h2>
-    <p>
-      The codebase is structured around a base <code>ExerciseBase</code> class that 
-      handles rep counting, stage tracking, and a 3-second countdown delay before 
-      tracking begins. Each exercise inherits from this base and implements its own 
-      <code>process()</code> method with custom angle logic. A Flask server was also 
-      built to expose the feed over a local network, allowing the output to be viewed 
-      in a browser.
-    </p>
+        <h2>Exercises Supported</h2>
+        <ul>
+          <li>Bicep curls — elbow angle tracking (shoulder → elbow → wrist)</li>
+          <li>Squats — knee angle tracking with stage detection</li>
+          <li>Lateral raises — shoulder abduction angle</li>
+          <li>Overhead press — elbow and shoulder range of motion</li>
+        </ul>
 
-    <h2>What I Learned</h2>
-    <p>
-      Building RepAI taught me how to work with real-time ML inference pipelines and 
-      the tradeoffs between model accuracy and frame latency. Getting the angle 
-      thresholds right for each exercise required a lot of iteration — small changes 
-      had a big impact on false positives. It also pushed me to think carefully about 
-      code architecture, keeping each exercise modular and easy to extend.
-    </p>
-  </div>
+        <div class="proj-img-inline">
+          <img src="repai-code1.jpg" alt="Curl tracker logic"/>
+          <div class="proj-img-caption">Curl tracker — angle thresholds define rep stages and enforce full range of motion</div>
+        </div>
 
-  <!-- SIDEBAR -->
-  <div class="proj-sidebar">
-    <div class="proj-sidebar-block">
-      <div class="proj-sidebar-title">Quick Facts</div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Type</span>
-        <span class="proj-sidebar-val">Computer Vision</span>
+        <h2>Architecture</h2>
+        <p>
+          The codebase is structured around a base <code>ExerciseBase</code> class that
+          handles rep counting, stage tracking, and a 3-second countdown delay before
+          tracking begins. Each exercise inherits from this base and implements its own
+          <code>process()</code> method with custom angle thresholds. A Flask server
+          exposes the live feed over the local network, allowing the output to be
+          monitored in a browser.
+        </p>
+        <p>
+          Side detection is handled automatically on every frame — the system compares
+          the summed confidence of left vs right keypoints and maps whichever side is
+          more visible to the active tracking points. This means it works regardless of
+          which way you face the camera.
+        </p>
+
+        <div class="proj-img-inline">
+          <img src="repai-code3.jpg" alt="Angle calculation"/>
+          <div class="proj-img-caption">Joint angle calculation — arctan2 vector method always returns the smaller interior angle</div>
+        </div>
+
+        <h2>What I Learned</h2>
+        <p>
+          Building RepAI taught me how to work with real-time ML inference pipelines and
+          the tradeoffs between model accuracy and frame latency. Getting the angle
+          thresholds right for each exercise required significant iteration — small
+          changes had a big impact on false positives. It also pushed me to think about
+          code architecture, keeping each exercise modular and independently extensible.
+        </p>
+
+        <h2>Next Steps — Hardware Integration</h2>
+        <p>
+          The next evolution of RepAI transitions the project from a desktop script into a dedicated embedded system. By offloading the UI and feedback loops to a physical controller, the system moves off the laptop screen and onto the weight rack, providing zero-distraction monitoring during high-intensity sets.
+        </p>
+        <ul>
+          <li>Embedded Interface: ESP32-powered control node with a high-contrast OLED display to mirror real-time rep counts and velocity data via low-latency UDP.</li>
+          <li>Haptic & Acoustic Feedback: Integrated buzzer and vibration motor to signal "depth reached" or "set complete" without needing to look at a screen.</li>
+          <li>Edge Compute Migration: Transitioning the Python/YOLOv8 pipeline to an NVIDIA Jetson or Raspberry Pi 5 for a fully standalone, camera-in-a-box form factor.</li>
+          <li>Ruggedized Housing: A custom 3D-printed enclosure featuring physical mounts for instant attachment to any standalone gym equipment.</li>
+        </ul>
+
       </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Model</span>
-        <span class="proj-sidebar-val">YOLOv8n-pose</span>
-      </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Input</span>
-        <span class="proj-sidebar-val">1280×720 Webcam</span>
-      </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Exercises</span>
-        <span class="proj-sidebar-val">4</span>
-      </div>
-      <div class="proj-sidebar-row">
-        <span class="proj-sidebar-key">Year</span>
-        <span class="proj-sidebar-val">2024</span>
-      </div>
-    </div>
-  </div>
 
-</div>
-
-    <!-- GALLERY -->
-    <div class="proj-gallery-wrap">
-      <div class="proj-gallery-inner">
-        <div class="stag">Photos</div>
-        <div class="proj-gallery-grid">
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
-          <div class="gi"><img src="repai-hero.jpg" alt=""/></div>
+      <div class="proj-sidebar">
+        <div class="proj-sidebar-block">
+          <div class="proj-sidebar-title">Quick Facts</div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Type</span>
+            <span class="proj-sidebar-val">Computer Vision</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Model</span>
+            <span class="proj-sidebar-val">YOLOv8n-pose</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Input</span>
+            <span class="proj-sidebar-val">1280×720 webcam</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Exercises</span>
+            <span class="proj-sidebar-val">4</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Keypoints</span>
+            <span class="proj-sidebar-val">17 per frame</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Year</span>
+            <span class="proj-sidebar-val">2024</span>
+          </div>
         </div>
       </div>
+
     </div>
 
   </div>
