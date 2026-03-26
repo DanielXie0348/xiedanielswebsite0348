@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>4-DOF Robotic Arm — Daniel Xie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .proj-page { background: var(--bg); min-height: 100vh; padding-top: 64px; }
+    .proj-header { background: var(--white); border-bottom: 1px solid var(--border); padding: 3rem 0 2.5rem; }
+    .proj-header-inner { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+    .proj-back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--fmono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.75rem; transition: color 0.2s; }
+    .proj-back:hover { color: var(--accent); }
+    .proj-header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .proj-header-left { flex: 1; }
+    .proj-page-num { font-family: var(--fmono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+    .proj-page-title { font-family: var(--fd); font-size: clamp(3rem, 6vw, 5.5rem); color: var(--text); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 1rem; }
+    .proj-page-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .proj-page-pills span { font-family: var(--fmono); font-size: 0.65rem; padding: 0.25rem 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid; color: var(--accent); border-color: rgba(74,127,165,0.3); background: rgba(74,127,165,0.05); }
+    .proj-body-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 5%; display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start; }
+    .proj-writeup h2 { font-family: var(--fd); font-size: 2rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 1rem; margin-top: 2.5rem; }
+    .proj-writeup h2:first-child { margin-top: 0; }
+    .proj-writeup p { color: var(--muted); font-size: 1.05rem; line-height: 1.85; margin-bottom: 1rem; }
+    .proj-writeup ul { list-style: none; margin-bottom: 1rem; }
+    .proj-writeup ul li { color: var(--muted); font-size: 1.05rem; line-height: 1.85; padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+    .proj-writeup ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-family: var(--fmono); }
+    .proj-img-inline { width: 100%; margin: 1.75rem 0; overflow: hidden; border: 1px solid var(--border); background: var(--bg); }
+    .proj-img-inline img { width: 100%; display: block; object-fit: cover; filter: saturate(0.92); transition: filter 0.3s; }
+    .proj-img-inline:hover img { filter: saturate(1.05); }
+    .proj-img-caption { font-family: var(--fmono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; padding: 0.6rem 0.85rem; border-top: 1px solid var(--border); background: var(--cream); }
+    .proj-img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 1.75rem 0; border: 1px solid var(--border); background: var(--border); }
+    .proj-img-pair .proj-img-inline { margin: 0; border: none; }
+    .proj-sidebar { position: sticky; top: 84px; display: flex; flex-direction: column; gap: 1.5rem; }
+    .proj-sidebar-block { border: 1px solid var(--border); background: var(--white); }
+    .proj-sidebar-title { font-family: var(--fmono); font-size: 0.63rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--cream); }
+    .proj-sidebar-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+    .proj-sidebar-row:last-child { border-bottom: none; }
+    .proj-sidebar-key { font-family: var(--fmono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+    .proj-sidebar-val { font-family: var(--fmono); font-size: 0.72rem; color: var(--text); text-align: right; }
+    @media (max-width: 900px) { .proj-body-wrap { grid-template-columns: 1fr; gap: 3rem; } .proj-sidebar { position: static; } }
+    @media (max-width: 600px) { .proj-img-pair { grid-template-columns: 1fr; } .proj-header-top { flex-direction: column; } }
+  </style>
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-name">Daniel Xie</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#engineer">Me</a></li>
+        <li><a href="../index.html#contact" class="nav-hire">Contact</a></li>
+      </ul>
+      <button class="burger" id="burger"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#engineer">Me</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+
+  <div class="proj-page">
+
+    <div class="proj-header">
+      <div class="proj-header-inner">
+        <a href="../index.html#projects" class="proj-back">← Back to projects</a>
+        <div class="proj-header-top">
+          <div class="proj-header-left">
+            <span class="proj-page-num">02 — Project</span>
+            <h1 class="proj-page-title">4-DOF Robotic Arm Model</h1>
+            <div class="proj-page-pills">
+              <span>SolidWorks</span>
+              <span>CAD</span>
+              <span>Mechanical Design</span>
+              <span>Kinematics and Dynamics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-body-wrap">
+
+      <div class="proj-writeup">
+
+        <h2>Overview</h2>
+        <p>
+          A 4 degree-of-freedom robotic arm designed entirely from scratch in SolidWorks.
+          Rather than a conventional gripper, the arm is built as a light-positioning platform —
+          with the end effector carrying a light source, making it suited for precision lighting,
+          photography rigs, or light-painting applications. All cables are routed internally
+          through the arm links, keeping the exterior profile clean and uncluttered.
+        </p>
+
+        <div class="proj-img-inline">
+          <img src="robotarm-hero.png" alt="4-DOF Robotic Arm — isometric view"/>
+          <div class="proj-img-caption">4-DOF robotic arm — isometric hero render</div>
+        </div>
+
+        <h2>Mechanical Design</h2>
+        <p>
+          The arm was designed around four primary joints: base rotation, shoulder, elbow,
+          and wrist. Each joint housing was modelled to be compact while leaving adequate
+          clearance for internal cable routing — a deliberate design choice that avoids
+          snagging hazards during operation and keeps the assembly looking intentional.
+        </p>
+        <p>
+          The structural links prioritise rigidity while keeping the overall assembly
+          lightweight. Joint covers were designed as separate shell components, allowing
+          them to be removed for maintenance access without disassembling the drivetrain.
+        </p>
+
+        <div class="proj-img-inline">
+        <img src="robotarm-front.png" alt="Arm Front View"/>
+        <div class="proj-img-caption">Front view - a front view of the robot arm showing the full assembly</div>
+        </div>
+        <div class="proj-img-inline">
+        <img src="robotarm-side.png" alt="Arm Side View"/>
+        <div class="proj-img-caption">Side view - a side profile of the robot arm</div>
+        </div>
+
+        <h2>Joint Design & Harmonic Drive</h2>
+        <p>
+        Each joint uses a harmonic drive transmission — a zero-backlash gear system
+        consisting of a wave generator, flex spline, and circular spline. The wave
+        generator deflects the flex spline into an elliptical shape, engaging teeth
+        on the circular spline at two points simultaneously. As the wave generator
+        rotates, the slight tooth count difference between the flex spline and
+        circular spline produces a high reduction ratio in an extremely compact
+        package.
+        </p>
+        <p>
+        Harmonic drives are the standard in precision robotic joints for good reason
+        — zero backlash, high torque density, and a single-stage reduction ratio
+        that would otherwise require multiple gear stages. For a light-positioning
+        arm where repeatability matters, it was the obvious choice over a
+        conventional planetary or spur gear arrangement.
+        </p>
+
+        <div class="proj-img-inline">
+        <img src="joint-exploded.png" alt="Joint exploded view"/>
+        <div class="proj-img-caption">Exploded view — joint assembly showing wave generator, flex spline, and circular spline</div>
+        </div>
+        <div class="proj-img-inline">
+        <img src="joint-assembled.png" alt="Joint assembled view"/>
+        <div class="proj-img-caption">Assembled view — joint assembly showing wave generator, flex spline, and circular spline</div>
+        </div>
+
+        <h2>End Effector & Light Mount</h2>
+        <p>
+          The arm terminates in a circular tool-mount flange designed to accept a light source.
+          The flange geometry allows for quick tool changes while maintaining a rigid,
+          low-slop connection at the wrist. Internal cable routing feeds power and signal
+          lines directly through the wrist joint and out through the flange — no external
+          cables visible on the finished assembly.
+        </p>
+
+        <div class="proj-img-inline">
+          <img src="robotarm-detail.png" alt="End effector detail"/>
+          <div class="proj-img-caption">End effector tool-mount flange — internal cable exit point</div>
+        </div>
+
+        <h2>Design Decisions</h2>
+        <ul>
+          <li>4-DOF configuration — base rotation, shoulder, elbow, and wrist</li>
+          <li>Internal cable routing throughout all links and joints</li>
+          <li>Circular tool-mount flange at end effector for light source attachment</li>
+          <li>Removable joint covers for maintenance access without drivetrain disassembly</li>
+          <li>Compact joint housings designed around internal clearance requirements</li>
+          <li>Rigid link geometry optimised for a favourable stiffness-to-weight ratio</li>
+        </ul>
+
+        <h2>What's Next</h2>
+        <p>
+          The CAD model is complete and intended for eventual fabrication. The plan is to
+          manufacture the structural links from aluminium stock and 3D print the joint
+          housings and covers. Motor selection and drivetrain sizing will follow once a
+          target payload and reach spec is locked in. The light-mount flange will be
+          prototyped first to validate the tool-change mechanism before committing to
+          the full build.
+        </p>
+
+      </div>
+
+      <div class="proj-sidebar">
+        <div class="proj-sidebar-block">
+          <div class="proj-sidebar-title">Quick Facts</div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Type</span>
+            <span class="proj-sidebar-val">Mechanical CAD</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">DOF</span>
+            <span class="proj-sidebar-val">4</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">End Effector</span>
+            <span class="proj-sidebar-val">Light Mount</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Cables</span>
+            <span class="proj-sidebar-val">Internal Routing</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">CAD</span>
+            <span class="proj-sidebar-val">SolidWorks 2025</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Status</span>
+            <span class="proj-sidebar-val">Design Complete</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Year</span>
+            <span class="proj-sidebar-val">2026</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container footer-row">
+      <span class="footer-name">Daniel Xie</span>
+      <span class="footer-copy">Mechatronics Engineering — University of Waterloo · © 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (burger && mobileMenu) burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  </script>
+
+</body>
+</html>
