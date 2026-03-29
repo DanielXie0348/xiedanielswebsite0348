@@ -9,160 +9,91 @@
   <link rel="stylesheet" href="../style.css"/>
   <style>
     .proj-page { background: var(--bg); min-height: 100vh; padding-top: 64px; }
-
-    .proj-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 0 2.5rem;
-    }
-    .proj-header-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 5%;
-    }
-    .proj-back {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-family: var(--fmono); font-size: 0.68rem;
-      color: var(--muted); letter-spacing: 0.1em;
-      text-transform: uppercase; margin-bottom: 1.75rem;
-      transition: color 0.2s;
-    }
+    .proj-header { background: var(--white); border-bottom: 1px solid var(--border); padding: 3rem 0 2.5rem; }
+    .proj-header-inner { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+    .proj-back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--fmono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.75rem; transition: color 0.2s; }
     .proj-back:hover { color: var(--accent); }
-    .proj-header-top {
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 2rem; flex-wrap: wrap;
-    }
+    .proj-header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .proj-header-left { flex: 1; }
-    .proj-page-num {
-      font-family: var(--fmono); font-size: 0.68rem;
-      color: var(--accent); letter-spacing: 0.14em;
-      text-transform: uppercase; margin-bottom: 0.5rem;
-      display: block;
-    }
-    .proj-page-title {
-      font-family: var(--fd);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      color: var(--text); line-height: 0.95;
-      letter-spacing: 0.02em; margin-bottom: 1rem;
-    }
-    .proj-page-pills {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-    }
-    .proj-page-pills span {
-      font-family: var(--fmono); font-size: 0.65rem;
-      padding: 0.25rem 0.65rem; letter-spacing: 0.08em;
-      text-transform: uppercase; border: 1px solid;
-      color: var(--accent); border-color: rgba(74,127,165,0.3);
-      background: rgba(74,127,165,0.05);
-    }
-    .proj-header-links {
-      display: flex; flex-direction: column; gap: 0.5rem;
-      padding-top: 0.5rem;
-    }
-    .proj-header-links a {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--fmono); font-size: 0.75rem;
-      color: var(--text); letter-spacing: 0.06em;
-      border: 1px solid var(--border); padding: 0.5rem 1rem;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
-    }
-    .proj-header-links a:hover {
-      background: var(--text); color: var(--bg);
-    }
+    .proj-page-num { font-family: var(--fmono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+    .proj-page-title { font-family: var(--fd); font-size: clamp(3rem, 6vw, 5.5rem); color: var(--text); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 1rem; }
+    .proj-page-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .proj-page-pills span { font-family: var(--fmono); font-size: 0.65rem; padding: 0.25rem 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid; color: var(--accent); border-color: rgba(74,127,165,0.3); background: rgba(74,127,165,0.05); }
+    .proj-header-links { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.5rem; }
+    .proj-header-links a { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--fmono); font-size: 0.75rem; color: var(--text); letter-spacing: 0.06em; border: 1px solid var(--border); padding: 0.5rem 1rem; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+    .proj-header-links a:hover { background: var(--text); color: var(--bg); }
 
-    .proj-body-wrap {
-      max-width: 1200px; margin: 0 auto;
-      padding: 5rem 5%;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 5rem;
-      align-items: start;
+    .phone-hero {
+      background: #0e0e12; padding: 4rem 5%;
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 2rem; flex-wrap: wrap; border-bottom: 1px solid var(--border);
+      overflow: hidden; position: relative; min-height: 420px;
     }
+    .phone-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(74,127,165,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(138,121,184,0.08) 0%, transparent 60%);
+    }
+    .phone-frame {
+      position: relative; z-index: 1; width: 200px;
+      background: #1a1a1a; border-radius: 36px;
+      border: 2px solid #2a2a2a; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transition: transform 0.3s; flex-shrink: 0;
+    }
+    .phone-frame:hover { transform: translateY(-8px); }
+    .phone-frame.lift { transform: translateY(-24px); }
+    .phone-frame.lift:hover { transform: translateY(-32px); }
+    .phone-notch { height: 28px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; }
+    .phone-notch::after { content: ''; width: 80px; height: 10px; background: #000; border-radius: 100px; }
+    .phone-screen { aspect-ratio: 9/19.5; background: #f7f5f0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .phone-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #444; }
+    .phone-placeholder span { font-family: var(--fmono); font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .phone-label { position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%); font-family: var(--fmono); font-size: 0.55rem; color: #444; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
 
-    .proj-writeup h2 {
-      font-family: var(--fd);
-      font-size: 2rem; letter-spacing: 0.04em;
-      color: var(--text); margin-bottom: 1rem;
-      margin-top: 2.5rem;
-    }
+    .proj-body-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 5%; display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start; }
+    .proj-writeup h2 { font-family: var(--fd); font-size: 2rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 1rem; margin-top: 2.5rem; }
     .proj-writeup h2:first-child { margin-top: 0; }
-    .proj-writeup p {
-      color: var(--muted); font-size: 1.05rem;
-      line-height: 1.85; margin-bottom: 1rem;
-    }
-    .proj-writeup ul {
-      list-style: none; margin-bottom: 1rem;
-    }
-    .proj-writeup ul li {
-      color: var(--muted); font-size: 1.05rem;
-      line-height: 1.85; padding-left: 1.25rem;
-      position: relative; margin-bottom: 0.4rem;
-    }
-    .proj-writeup ul li::before {
-      content: '—';
-      position: absolute; left: 0;
-      color: var(--accent); font-family: var(--fmono);
-    }
+    .proj-writeup p { color: var(--muted); font-size: 1.05rem; line-height: 1.85; margin-bottom: 1rem; }
+    .proj-writeup ul { list-style: none; margin-bottom: 1rem; }
+    .proj-writeup ul li { color: var(--muted); font-size: 1.05rem; line-height: 1.85; padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+    .proj-writeup ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-family: var(--fmono); }
 
-    .proj-img-inline {
-      width: 100%; margin: 1.75rem 0;
-      overflow: hidden; border: 1px solid var(--border);
-      background: var(--bg);
-    }
-    .proj-img-inline img {
-      width: 100%; display: block; object-fit: cover;
-      filter: saturate(0.92); transition: filter 0.3s;
-    }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 2rem 0; background: var(--border); border: 1px solid var(--border); }
+    .feature-card { background: var(--white); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .feature-icon { font-size: 1.4rem; line-height: 1; }
+    .feature-title { font-family: var(--fd); font-size: 1.1rem; letter-spacing: 0.04em; color: var(--text); }
+    .feature-desc { font-family: var(--fmono); font-size: 0.72rem; color: var(--muted); line-height: 1.6; }
+
+    .proj-img-inline { width: 100%; margin: 1.75rem 0; overflow: hidden; border: 1px solid var(--border); background: var(--bg); }
+    .proj-img-inline img { width: 100%; display: block; object-fit: cover; filter: saturate(0.92); transition: filter 0.3s; }
     .proj-img-inline:hover img { filter: saturate(1.05); }
-    .proj-img-caption {
-      font-family: var(--fmono); font-size: 0.65rem;
-      color: var(--muted); letter-spacing: 0.08em;
-      padding: 0.6rem 0.85rem;
-      border-top: 1px solid var(--border);
-      background: var(--cream);
-    }
-    .proj-img-pair {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; margin: 1.75rem 0;
-      border: 1px solid var(--border); background: var(--border);
-    }
+    .proj-img-caption { font-family: var(--fmono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; padding: 0.6rem 0.85rem; border-top: 1px solid var(--border); background: var(--cream); }
+    .proj-img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 1.75rem 0; border: 1px solid var(--border); background: var(--border); }
     .proj-img-pair .proj-img-inline { margin: 0; border: none; }
 
-    .proj-sidebar {
-      position: sticky; top: 84px;
-      display: flex; flex-direction: column; gap: 1.5rem;
-    }
-    .proj-sidebar-block {
-      border: 1px solid var(--border); background: var(--white);
-    }
-    .proj-sidebar-title {
-      font-family: var(--fmono); font-size: 0.63rem;
-      color: var(--accent); letter-spacing: 0.14em;
-      text-transform: uppercase; padding: 0.85rem 1.25rem;
-      border-bottom: 1px solid var(--border); background: var(--cream);
-    }
-    .proj-sidebar-row {
-      display: flex; justify-content: space-between;
-      align-items: baseline; padding: 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--border); gap: 1rem;
-    }
+    .tech-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 1.5rem; }
+    .tech-pill { font-family: var(--fmono); font-size: 0.65rem; padding: 0.3rem 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); color: var(--muted); background: var(--white); }
+
+    .proj-sidebar { position: sticky; top: 84px; display: flex; flex-direction: column; gap: 1.5rem; }
+    .proj-sidebar-block { border: 1px solid var(--border); background: var(--white); }
+    .proj-sidebar-title { font-family: var(--fmono); font-size: 0.63rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--cream); }
+    .proj-sidebar-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); gap: 1rem; }
     .proj-sidebar-row:last-child { border-bottom: none; }
-    .proj-sidebar-key {
-      font-family: var(--fmono); font-size: 0.65rem;
-      color: var(--muted); letter-spacing: 0.06em;
-      text-transform: uppercase; white-space: nowrap;
-    }
-    .proj-sidebar-val {
-      font-family: var(--fmono); font-size: 0.72rem;
-      color: var(--text); text-align: right;
-    }
+    .proj-sidebar-key { font-family: var(--fmono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+    .proj-sidebar-val { font-family: var(--fmono); font-size: 0.72rem; color: var(--text); text-align: right; }
 
     @media (max-width: 900px) {
       .proj-body-wrap { grid-template-columns: 1fr; gap: 3rem; }
       .proj-sidebar { position: static; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .proj-img-pair { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
-      .proj-img-pair { grid-template-columns: 1fr; }
       .proj-header-top { flex-direction: column; }
+      .phone-frame { width: 140px; }
     }
   </style>
 </head>
@@ -192,19 +123,66 @@
         <div class="proj-header-top">
           <div class="proj-header-left">
             <span class="proj-page-num">03 — Project</span>
-            <h1 class="proj-page-title">RepAI - An Intelligent Workout Assistant</h1>
+            <h1 class="proj-page-title">RepAI</h1>
             <div class="proj-page-pills">
-              <span>Python</span>
-              <span>YOLOv8</span>
-              <span>OpenCV</span>
-              <span>MediaPipe</span>
-              <span>Flask</span>
+              <span>Python</span><span>YOLOv8</span><span>OpenCV</span>
+              <span>Flask</span><span>PWA</span><span>Claude API</span>
             </div>
           </div>
           <div class="proj-header-links">
-            <a href="#" target="_blank">GitHub ↗</a>
+            <a href="https://github.com/DanielXie0348" target="_blank">GitHub ↗</a>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="phone-hero">
+      <div class="phone-frame" style="position:relative">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <!-- swap with: <img src="repai-home.jpg" alt="Home"/> -->
+          <div class="phone-placeholder">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Home</span>
+          </div>
+        </div>
+        <div class="phone-label">Home</div>
+      </div>
+
+      <div class="phone-frame lift" style="position:relative">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:#111">
+          <!-- swap with: <img src="repai-counter.jpg" alt="Counter"/> -->
+          <div class="phone-placeholder" style="color:#555">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Counter</span>
+          </div>
+        </div>
+        <div class="phone-label">Live Counter</div>
+      </div>
+
+      <div class="phone-frame" style="position:relative">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <!-- swap with: <img src="repai-sets.jpg" alt="Sets"/> -->
+          <div class="phone-placeholder">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span>Sets</span>
+          </div>
+        </div>
+        <div class="phone-label">Set Replays</div>
+      </div>
+
+      <div class="phone-frame" style="position:relative">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <!-- swap with: <img src="repai-profile.jpg" alt="Profile"/> -->
+          <div class="phone-placeholder">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+          </div>
+        </div>
+        <div class="phone-label">Profile</div>
       </div>
     </div>
 
@@ -214,86 +192,138 @@
 
         <h2>Overview</h2>
         <p>
-          RepAI is a real-time AI workout assistant that uses your webcam to count reps,
-          track exercise stages, and provide live feedback on form — no wearables, no
-          gym equipment required. It runs entirely on-device using pose estimation and
-          joint angle analysis.
+          RepAI is a real-time AI workout assistant built as a mobile-first Progressive Web App.
+          It uses your phone camera to count reps, track exercise stages, record sets, and deliver
+          per-set AI coaching feedback — no wearables, no gym equipment, no App Store required.
+          Install directly from Safari to your home screen and it runs exactly like a native app.
         </p>
 
-        <h2>How It Works</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📷</div>
+            <div class="feature-title">Live Pose Tracking</div>
+            <div class="feature-desc">YOLOv8n-pose runs server-side, detecting 17 keypoints per frame. Joint angles computed in real time to track rep stages.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔢</div>
+            <div class="feature-title">Automatic Rep Counting</div>
+            <div class="feature-desc">Angle thresholds define up/down stages per exercise. A rep only counts when full range of motion completes in order — no half-reps.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-title">AI Coach Feedback</div>
+            <div class="feature-desc">After each set, Claude API generates personalized coaching feedback — warm, specific, 1–2 sentences per set.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💪</div>
+            <div class="feature-title">Muscle Map</div>
+            <div class="feature-desc">Front and back SVG body diagrams on the Profile tab. Muscles light up yellow based on what you've trained this week.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📹</div>
+            <div class="feature-title">Set Replays</div>
+            <div class="feature-desc">Every set recorded via MediaRecorder on the annotated canvas. Tap any set to replay your skeleton overlay and review form.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <div class="feature-title">Personal Records</div>
+            <div class="feature-desc">PRs tracked per exercise in localStorage. Streak and active day history persist across sessions.</div>
+          </div>
+        </div>
+
+        <h2>How Rep Counting Works</h2>
         <p>
-          Every frame from the webcam is passed through YOLOv8's pose estimation model,
-          which detects 17 body keypoints in real time at 1280×720. From those keypoints,
-          joint angles are calculated using vector math — the shoulder, elbow, and wrist
-          points define the elbow angle used to track a curl, for example. Each exercise
-          has its own angle thresholds defining the "up" and "down" stages. A rep is
-          counted every time the full range of motion is completed in the correct order —
-          preventing half-reps and out-of-sequence counts from registering.
+          Each frame from the phone camera is JPEG-encoded and sent via POST to the Flask server.
+          YOLOv8 runs inference and returns 17 keypoints — shoulders, elbows, wrists, hips, knees, ankles.
+          The system compares summed confidence scores for left vs right side keypoints and automatically
+          maps the more visible side to the active tracking points, so it works regardless of which
+          way you face the camera.
         </p>
         <p>
-          The system also flags incomplete reps in real time. If the joint angle doesn't
-          reach the full contraction or extension threshold, the stage doesn't advance —
-          giving the user live feedback that the rep wasn't completed with full range of
-          motion.
+          From those keypoints, joint angles are computed using an arctan2 vector method that always
+          returns the smaller interior angle. Each exercise class defines its own thresholds — for a
+          bicep curl, the elbow angle crossing 160° sets stage to "down", crossing back below 35°
+          increments the counter and sets stage to "up".
         </p>
 
-        <div class="proj-img-inline">
-          <img src="repai-code2.jpg" alt="Main inference loop"/>
-          <div class="proj-img-caption">Main inference loop — YOLOv8 per-frame pose estimation with automatic side detection</div>
+        <div class="proj-img-pair">
+          <div class="proj-img-inline">
+            <img src="repai-code1.jpg" alt="Curl tracker logic"/>
+            <div class="proj-img-caption">Curl tracker — angle thresholds enforce full range of motion</div>
+          </div>
+          <div class="proj-img-inline">
+            <img src="repai-code2.jpg" alt="Main inference loop"/>
+            <div class="proj-img-caption">Main inference loop — auto side detection + per-frame keypoint processing</div>
+          </div>
         </div>
 
         <h2>Exercises Supported</h2>
         <ul>
-          <li>Bicep curls — elbow angle tracking (shoulder → elbow → wrist)</li>
-          <li>Squats — knee angle tracking with stage detection</li>
-          <li>Lateral raises — shoulder abduction angle</li>
-          <li>Overhead press — elbow and shoulder range of motion</li>
+          <li>Bicep Curl — elbow flexion (shoulder → elbow → wrist)</li>
+          <li>Squat — knee angle (hip → knee → ankle)</li>
+          <li>Lateral Raise — shoulder abduction (hip → shoulder → elbow)</li>
+          <li>Shoulder Press — overhead extension</li>
+          <li>Push-Up — elbow flexion from side profile</li>
+          <li>Lunge — front knee flexion</li>
+          <li>Tricep Extension — elbow extension overhead</li>
+          <li>Calf Raise — hip/ankle ratio proxy</li>
         </ul>
 
-        <div class="proj-img-inline">
-          <img src="repai-code1.jpg" alt="Curl tracker logic"/>
-          <div class="proj-img-caption">Curl tracker — angle thresholds define rep stages and enforce full range of motion</div>
-        </div>
-
-        <h2>Architecture</h2>
+        <h2>PWA Architecture</h2>
         <p>
-          The codebase is structured around a base <code>ExerciseBase</code> class that
-          handles rep counting, stage tracking, and a 3-second countdown delay before
-          tracking begins. Each exercise inherits from this base and implements its own
-          <code>process()</code> method with custom angle thresholds. A Flask server
-          exposes the live feed over the local network, allowing the output to be
-          monitored in a browser.
+          The frontend is a single HTML file served by Flask — no build step, no framework.
+          Four screens (Home, Counter, Sets, Profile) live in the same DOM and transition via
+          opacity. A dark pill bottom nav handles routing. Installable on iOS via Safari's
+          Add to Home Screen — runs fullscreen with no browser chrome.
         </p>
         <p>
-          Side detection is handled automatically on every frame — the system compares
-          the summed confidence of left vs right keypoints and maps whichever side is
-          more visible to the active tracking points. This means it works regardless of
-          which way you face the camera.
+          Camera access on iOS requires HTTPS. ngrok tunnels the local Flask server over a
+          secure URL during development, giving the phone camera permission while keeping
+          the backend running locally with full access to the GPU for YOLO inference.
         </p>
 
         <div class="proj-img-inline">
           <img src="repai-code3.jpg" alt="Angle calculation"/>
-          <div class="proj-img-caption">Joint angle calculation — arctan2 vector method always returns the smaller interior angle</div>
+          <div class="proj-img-caption">Joint angle calculation — arctan2 vector method</div>
         </div>
 
-        <h2>What I Learned</h2>
+        <h2>AI Feedback System</h2>
         <p>
-          Building RepAI taught me how to work with real-time ML inference pipelines and
-          the tradeoffs between model accuracy and frame latency. Getting the angle
-          thresholds right for each exercise required significant iteration — small
-          changes had a big impact on false positives. It also pushed me to think about
-          code architecture, keeping each exercise modular and independently extensible.
+          After every saved set, the app fires an async call to Claude's messages API with the
+          exercise name and rep count. A system prompt instructs the model to act as a personal
+          trainer and respond in 1–2 warm, specific sentences with no markdown. The response
+          appears in the set card in the Sets tab while the user is already into their next set.
         </p>
 
-        <h2>Next Steps — Hardware Integration</h2>
+        <h2>Muscle Map</h2>
         <p>
-          The next evolution of RepAI transitions the project from a desktop script into a dedicated embedded system. By offloading the UI and feedback loops to a physical controller, the system moves off the laptop screen and onto the weight rack, providing zero-distraction monitoring during high-intensity sets.
+          The Profile tab features front and back SVG body diagrams drawn entirely in code —
+          no image assets. Each muscle group is a named path element. A mapping object connects
+          each exercise ID to the relevant muscle path IDs. After each saved set, worked muscles
+          are highlighted yellow. The map resets every Monday and weekly state persists in localStorage.
         </p>
+
+        <h2>Tech Stack</h2>
+        <div class="tech-row">
+          <div class="tech-pill">Python 3.11</div>
+          <div class="tech-pill">Flask</div>
+          <div class="tech-pill">YOLOv8n-pose</div>
+          <div class="tech-pill">OpenCV</div>
+          <div class="tech-pill">NumPy</div>
+          <div class="tech-pill">Claude API</div>
+          <div class="tech-pill">MediaRecorder API</div>
+          <div class="tech-pill">PWA</div>
+          <div class="tech-pill">ngrok</div>
+          <div class="tech-pill">Vanilla JS</div>
+        </div>
+
+        <h2>Next Steps</h2>
         <ul>
-          <li>Embedded Interface: ESP32-powered control node with a high-contrast OLED display to mirror real-time rep counts and velocity data via low-latency UDP.</li>
-          <li>Haptic & Acoustic Feedback: Integrated buzzer and vibration motor to signal "depth reached" or "set complete" without needing to look at a screen.</li>
-          <li>Edge Compute Migration: Transitioning the Python/YOLOv8 pipeline to an NVIDIA Jetson or Raspberry Pi 5 for a fully standalone, camera-in-a-box form factor.</li>
-          <li>Ruggedized Housing: A custom 3D-printed enclosure featuring physical mounts for instant attachment to any standalone gym equipment.</li>
+          <li>Keypoint replay — store skeleton coordinates instead of video for lighter, privacy-friendly set replays</li>
+          <li>Voice cues — Web Speech API to call out rep counts and form tips mid-set</li>
+          <li>Real-time form feedback — flag incomplete reps or joint misalignment live during a set</li>
+          <li>User accounts — persist data server-side so history survives across devices</li>
+          <li>Edge deployment — run YOLOv8 on-device via ONNX/WebAssembly to remove the server dependency</li>
         </ul>
 
       </div>
@@ -301,35 +331,24 @@
       <div class="proj-sidebar">
         <div class="proj-sidebar-block">
           <div class="proj-sidebar-title">Quick Facts</div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Type</span>
-            <span class="proj-sidebar-val">Computer Vision</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Model</span>
-            <span class="proj-sidebar-val">YOLOv8n-pose</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Input</span>
-            <span class="proj-sidebar-val">1280×720 webcam</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Exercises</span>
-            <span class="proj-sidebar-val">4</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Keypoints</span>
-            <span class="proj-sidebar-val">17 per frame</span>
-          </div>
-          <div class="proj-sidebar-row">
-            <span class="proj-sidebar-key">Year</span>
-            <span class="proj-sidebar-val">2024</span>
-          </div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Type</span><span class="proj-sidebar-val">Mobile PWA</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Model</span><span class="proj-sidebar-val">YOLOv8n-pose</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Exercises</span><span class="proj-sidebar-val">8</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Keypoints</span><span class="proj-sidebar-val">17 per frame</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">AI</span><span class="proj-sidebar-val">Claude API</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Platform</span><span class="proj-sidebar-val">iOS / Android PWA</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Year</span><span class="proj-sidebar-val">2025</span></div>
+        </div>
+        <div class="proj-sidebar-block">
+          <div class="proj-sidebar-title">Unique to RepAI</div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Rep counting</span><span class="proj-sidebar-val">Camera-based</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Feedback</span><span class="proj-sidebar-val">Per-set AI coach</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Replay</span><span class="proj-sidebar-val">Skeleton overlay</span></div>
+          <div class="proj-sidebar-row"><span class="proj-sidebar-key">Muscle map</span><span class="proj-sidebar-val">Weekly tracking</span></div>
         </div>
       </div>
 
     </div>
-
   </div>
 
   <footer>
