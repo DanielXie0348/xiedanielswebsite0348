@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GE90 Turbofan — Daniel Xie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .proj-page { background: var(--bg); min-height: 100vh; padding-top: 64px; }
+
+    /* HEADER */
+    .proj-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 0 2.5rem;
+    }
+    .proj-header-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 5%;
+    }
+    .proj-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--fmono); font-size: 0.68rem;
+      color: var(--muted); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 1.75rem;
+      transition: color 0.2s;
+    }
+    .proj-back:hover { color: var(--accent); }
+    .proj-header-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    }
+    .proj-header-left { flex: 1; }
+    .proj-page-num {
+      font-family: var(--fmono); font-size: 0.68rem;
+      color: var(--accent); letter-spacing: 0.14em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+      display: block;
+    }
+    .proj-page-title {
+      font-family: var(--fd);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: var(--text); line-height: 0.95;
+      letter-spacing: 0.02em; margin-bottom: 1rem;
+    }
+    .proj-page-pills {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .proj-page-pills span {
+      font-family: var(--fmono); font-size: 0.65rem;
+      padding: 0.25rem 0.65rem; letter-spacing: 0.08em;
+      text-transform: uppercase; border: 1px solid;
+      color: var(--accent); border-color: rgba(74,127,165,0.3);
+      background: rgba(74,127,165,0.05);
+    }
+
+    /* BODY */
+    .proj-body-wrap {
+      max-width: 1200px; margin: 0 auto;
+      padding: 5rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* WRITE-UP */
+    .proj-writeup h2 {
+      font-family: var(--fd);
+      font-size: 2rem; letter-spacing: 0.04em;
+      color: var(--text); margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .proj-writeup h2:first-child { margin-top: 0; }
+    .proj-writeup p {
+      color: var(--muted); font-size: 1.05rem;
+      line-height: 1.85; margin-bottom: 1rem;
+    }
+    .proj-writeup ul {
+      list-style: none; margin-bottom: 1rem;
+    }
+    .proj-writeup ul li {
+      color: var(--muted); font-size: 1.05rem;
+      line-height: 1.85; padding-left: 1.25rem;
+      position: relative; margin-bottom: 0.4rem;
+    }
+    .proj-writeup ul li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--accent); font-family: var(--fmono);
+    }
+
+    /* INLINE IMAGES */
+    .proj-img-inline {
+      width: 100%;
+      margin: 1.75rem 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .proj-img-inline img {
+      width: 100%; display: block;
+      object-fit: cover;
+      filter: saturate(0.92);
+      transition: filter 0.3s;
+    }
+    .proj-img-inline:hover img { filter: saturate(1.05); }
+    .proj-img-caption {
+      font-family: var(--fmono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      padding: 0.6rem 0.85rem;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+
+    /* SIDEBAR */
+    .proj-sidebar {
+      position: sticky; top: 84px;
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .proj-sidebar-block {
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+    .proj-sidebar-title {
+      font-family: var(--fmono); font-size: 0.63rem;
+      color: var(--accent); letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .proj-sidebar-row {
+      display: flex; justify-content: space-between;
+      align-items: baseline;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .proj-sidebar-row:last-child { border-bottom: none; }
+    .proj-sidebar-key {
+      font-family: var(--fmono); font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.06em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .proj-sidebar-val {
+      font-family: var(--fmono); font-size: 0.72rem;
+      color: var(--text); text-align: right;
+    }
+
+    @media (max-width: 900px) {
+      .proj-body-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .proj-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-name">Daniel Xie</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#engineer">Me</a></li>
+        <li><a href="../index.html#contact" class="nav-hire">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="proj-page">
+
+    <div class="proj-header">
+      <div class="proj-header-inner">
+        <a href="../index.html#projects" class="proj-back">← Back to projects</a>
+        <div class="proj-header-top">
+          <div class="proj-header-left">
+            <span class="proj-page-num">03 — Project</span>
+            <h1 class="proj-page-title">GE90 High Bypass Turbofan Engine</h1>
+            <div class="proj-page-pills">
+              <span>SolidWorks</span>
+              <span>Mechanical Design</span>
+              <span>CFD / FEA Validation</span>
+              <span>Aerospace</span>
+              <span>Propulsion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-body-wrap">
+
+      <div class="proj-writeup">
+
+        <h2>Overview</h2>
+        <p>
+          This project involved reverse-engineering and modeling the General Electric GE90-115B, a pinnacle of aerospace engineering. The objective was to create a high-fidelity mechanical assembly that replicates the internal flow path and the iconic "S-shape" composite fan blades, while ensuring all components adhere to realistic structural and aerodynamic constraints.
+        </p>
+
+        <div class="proj-img-inline">
+          <img src="engine.png" alt="GE90 Full Engine Assembly"/>
+          <div class="proj-img-caption">Full engine assembly view</div>
+        </div>
+
+        <h2>Internal Components & Spool Architecture</h2>
+        <p>
+          The GE90 utilizes a dual-spool architecture, which I replicated through a complex system of concentric shafts and rotating stages. This mechanical separation allows the high-pressure and low-pressure sections to operate at their respective optimal rotational speeds, a critical requirement for high-bypass efficiency.
+        </p>
+
+
+        <ul>
+          <li><strong>Low-Pressure (LP) Spool:</strong> Consists of the massive 128-inch front fan and 3-stage booster compressor, driven by a 6-stage low-pressure turbine. The LP shaft runs through the center of the HP shaft, requiring precise concentric mating and clearance management in SolidWorks.</li>
+          <li><strong>High-Pressure (HP) Spool:</strong> Features a 6-stage high-pressure compressor (HPC) driven by a 3-stage high-pressure turbine. This "core" of the engine is responsible for the massive compression ratios required for high-energy combustion.</li>
+          <li><strong>Combustion Chamber:</strong> Architected as an annular bridge between the HPC and HPT, including modeled fuel injector ports and internal cooling vents to simulate realistic thermal flow paths.</li>
+        </ul>
+        <div class="proj-img-inline">
+          <img src="engine-section.png" alt="GE90 Full Engine Assembly"/>
+          <div class="proj-img-caption">Section view showcasing the dual-spool core and combustion architecture</div>
+        </div>
+
+        <h2>Parametric Blade Geometry</h2>
+        <p>
+          The 22 signature fan blades were modeled using parametric spline equations in SolidWorks to capture the complex sinusoidal twist required for subsonic efficiency. By utilizing advanced surfacing techniques—specifically lofts and boundary surfaces—the geometry transitions seamlessly from the hub to the blade tip, maintaining aerodynamic continuity.
+        </p>
+
+        <h2>Core Integration & Analysis</h2>
+        <p>
+          Beyond visual modeling, the project focused on mechanical validation. I designed a functional core flow path featuring a 10-stage high-pressure compressor (HPC), an annular combustion chamber with integrated swirler ports, and multi-stage turbines. Using SolidWorks Simulation, I performed preliminary assessments to ensure the assembly could support the physics of flight:
+        </p>
+        
+        <ul>
+          <li><strong>Mechanical Coupling:</strong> Modeled a dual-spool system with high-pressure and low-pressure shafts rotating independently with precise concentric mating.</li>
+          <li><strong>Structural Validation (FEA):</strong> Conducted static studies to monitor Von Mises stress levels on the rotating turbine stages, ensuring structural integrity under simulated 5,000 RPM centrifugal loads.</li>
+          <li><strong>Flow Consistency (CFD):</strong> Mapped pressure gradients through the bypass duct and core to verify that the internal geometry maintained a smooth, non-interfering flow path.</li>
+          <li><strong>Conformal Surfacing:</strong> Utilized "Up-to-Body" extrusion logic to mount the pylon and nacelle, ensuring a seamless aerodynamic skin that wraps perfectly around the engine's radial profile.</li>
+        </ul>
+
+        <h2>Software & Workflow</h2>
+        <p>
+          The entire assembly was managed using Top-Down design principles in SolidWorks. Master skeleton sketches were used to drive global variables, allowing for rapid iteration of stage counts and blade pitches. This structured workflow was essential for maintaining performance across a large assembly and ensuring zero-interference between stationary stators and rotating components.
+        </p>
+
+        <h2>Mechatronics Considerations</h2>
+        <p>
+          As a Mechatronics project, emphasis was placed on the "System" view. The design accounts for the integration of sensors (bleed air ports) and mechanical power extraction for the accessory gearbox. The project served as a case study in managing 100+ part hierarchies and utilizing advanced CAD features to simulate real-world aerospace hardware.
+        </p>
+
+      </div>
+
+      <div class="proj-sidebar">
+        <div class="proj-sidebar-block">
+          <div class="proj-sidebar-title">Quick Facts</div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Type</span>
+            <span class="proj-sidebar-val">Mechanical Design</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Software</span>
+            <span class="proj-sidebar-val">SolidWorks</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Analysis</span>
+            <span class="proj-sidebar-val">FEA & CFD</span>
+          </div>
+          <div class="proj-sidebar-row">
+            <span class="proj-sidebar-key">Year</span>
+            <span class="proj-sidebar-val">2026</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container footer-row">
+      <span class="footer-name">Daniel Xie</span>
+      <span class="footer-copy">Mechatronics Engineering — University of Waterloo · © 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
