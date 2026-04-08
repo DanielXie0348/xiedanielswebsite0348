@@ -288,75 +288,110 @@
 
       <div class="proj-writeup">
 
-        <h2>Overview</h2>
-        <p>
-          AutoThaw is an ESP32-based automatic driveway salt dispenser that eliminates the need to
-          manually salt your driveway before a snowstorm. It pulls live weather API data to detect
-          incoming freezing conditions and autonomously triggers salt distribution — no manual
-          intervention needed.
-        </p>
-        <!-- Show photo of entire design-->
-        <div class="proj-img-inline">
-          <img src="autothaw-design.jpg" alt="AutoThaw design"/>
-          <div class="proj-img-caption">Complete AutoThaw design</div>
-        </div>
+  <h2>Overview</h2>
+  <p>
+    AutoThaw is an ESP32-based automatic driveway salt dispenser that eliminates the need to
+    manually salt your driveway before a snowstorm. It pulls live weather API data to detect
+    incoming freezing conditions and autonomously triggers salt distribution — no manual
+    intervention needed.
+  </p>
 
-        <h2>Mechanical Design</h2>
-        <p>
-          The entire enclosure was designed from scratch in SolidWorks and 3D printed. The DC motor
-          was mounted into the dispenser hub using a press interference fit with tight tolerances,
-          ensuring zero slop in the drivetrain without any fasteners. The enclosure was designed
-          around the electronics, keeping the assembly compact and weather-appropriate.
-        </p>
+  <div class="proj-img-inline">
+    <img src="autothaw-design.jpg" alt="AutoThaw design"/>
+    <div class="proj-img-caption">Complete AutoThaw design</div>
+  </div>
 
-        <div class="proj-img-inline">
-          <img src="autothaw-cad2.jpg" alt="SolidWorks enclosure design"/>
-          <div class="proj-img-caption">SolidWorks enclosure design with press interference fit motor mount</div>
-        </div>
+  <h2>Mechanical Design</h2>
+  <p>
+    The entire enclosure was designed from scratch in SolidWorks and 3D printed in PLA.
+    Material selection was straightforward — since AutoThaw operates exclusively in freezing
+    outdoor conditions, PLA's relatively low melting point is entirely irrelevant. PLA was
+    chosen for its dimensional stability, high rigidity, and printability at tight tolerances,
+    making it the most practical choice for a functional outdoor enclosure. This is also a
+    DFM decision: PLA is widely available, inexpensive, and prints reliably without warping,
+    reducing iteration time during development.
+  </p>
+  <p>
+    The DC motor was mounted into the dispenser hub using a press interference fit, eliminating
+    the need for fasteners entirely. This reduces part count, simplifies assembly, and removes
+    any risk of fastener loosening under vibration — a direct application of DFM and DFA
+    principles. Achieving the correct interference required several print iterations to dial in
+    the tolerance stack between the printed bore and the motor shaft, but the result is a
+    zero-slop, fully rigid drivetrain with no mechanical play.
+  </p>
 
-        <h2>Electronics & Firmware</h2>
-        <p>
-          Powered by a 9V battery driving the DC motor through the ESP32, the firmware is written
-          in C++ and handles weather API polling, motor control logic, and network communication.
-          Tailscale was used to expose the device securely over the network, enabling remote
-          monitoring and control from anywhere.
-        </p>
+  <div class="proj-img-inline">
+    <img src="autothaw-cad2.jpg" alt="SolidWorks enclosure design"/>
+    <div class="proj-img-caption">SolidWorks enclosure design with press interference fit motor mount</div>
+  </div>
 
-        <!-- Insert electronics/wiring photo here -->
-        <div class="proj-img-inline">
-          <img src="autothaw-electronics.jpg" alt="Electronics"/>
-          <div class="proj-img-caption">ESP32 wiring</div>
-        </div>
+  <h2>Electronics & Firmware</h2>
+  <p>
+    The ESP32 was chosen as the microcontroller specifically for its built-in WiFi capability —
+    the core function of AutoThaw depends on polling a live weather API over the network, which
+    would have required a separate WiFi shield on an Arduino, adding cost, complexity, and
+    failure points. The ESP32 handles this natively, keeping the design clean and minimal.
+  </p>
+  <p>
+    The DC motor operates at 9V, which immediately rules out driving it directly from an ESP32
+    GPIO pin — GPIO outputs are limited to 3.3V at roughly 40mA, nowhere near enough current
+    to drive a motor. A MOSFET switching circuit was used instead: the ESP32 sends a low-power
+    logic signal to the MOSFET gate, which switches the full 9V motor circuit on and off. This
+    decouples the control logic from the power path entirely, protecting the microcontroller
+    while allowing precise software control of the motor. The 9V battery was selected to match
+    the DC motor's rated operating voltage.
+  </p>
+  <p>
+    Firmware is written in C++ and handles weather API polling, JSON parsing, motor control
+    logic, and network communication. Tailscale was used to expose the device securely over
+    the network, enabling remote monitoring and control from anywhere without opening firewall
+    ports.
+  </p>
 
-        <h2>Software & AI Integration</h2>
-        <p>
-          A Python backend ties the system together — integrating the Gemini API for intelligent
-          decision-making on when conditions warrant dispensing, and ElevenLabs for voice alerts.
-          The result is a system that thinks, speaks, and acts on its own.
-        </p>
-        <div class="proj-img-inline">
-          <img src="autothaw-ui.png" alt="User Interface"/>
-          <div class="proj-img-caption">User Interface of AutoThaw</div>
-        </div>
+  <div class="proj-img-inline">
+    <img src="autothaw-electronics.jpg" alt="Electronics"/>
+    <div class="proj-img-caption">ESP32 wiring and MOSFET motor driver circuit</div>
+  </div>
 
-        <ul>
-          <li>SolidWorks enclosure design with press interference fit motor mount</li>
-          <li>ESP32 firmware in C++ with weather API polling and motor control</li>
-          <li>Gemini API integration for intelligent dispensing decisions</li>
-          <li>ElevenLabs voice alerts for system status and warnings</li>
-          <li>Tailscale for secure remote access and monitoring</li>
-          <li>9V battery-powered, fully self-contained unit</li>
-        </ul>
+  <h2>Software & AI Integration</h2>
+  <p>
+    A Python backend ties the system together — integrating the Gemini API for intelligent
+    decision-making on when conditions warrant dispensing, and ElevenLabs for voice alerts.
+    Rather than triggering on a simple temperature threshold, the Gemini integration allows
+    the system to reason over multiple weather signals simultaneously, making smarter dispensing
+    decisions that account for forecast confidence, precipitation type, and timing. The result
+    is a system that thinks, speaks, and acts on its own.
+  </p>
 
-        <h2>What I Learned</h2>
-        <p>
-          AutoThaw pushed me to think across the full stack simultaneously — mechanical tolerancing,
-          firmware logic, and API integration all had to work together. Getting the interference fit
-          right took several print iterations, and integrating multiple external APIs taught me how
-          to architect software around unreliable network conditions.
-        </p>
+  <div class="proj-img-inline">
+    <img src="autothaw-ui.png" alt="User Interface"/>
+    <div class="proj-img-caption">User Interface of AutoThaw</div>
+  </div>
 
-      </div>
+  <ul>
+    <li>PLA enclosure — chosen for rigidity, dimensional stability, and DFM; melting point irrelevant in cold operating environment</li>
+    <li>Press interference fit motor mount — eliminates fasteners, reduces part count, zero mechanical play</li>
+    <li>ESP32 selected for native WiFi — avoids external shield, keeps BOM minimal</li>
+    <li>MOSFET switching circuit — decouples 9V motor power from 3.3V GPIO logic, protects microcontroller</li>
+    <li>C++ firmware with weather API polling, JSON parsing, and motor control logic</li>
+    <li>Gemini API for multi-signal intelligent dispensing decisions</li>
+    <li>ElevenLabs voice alerts for system status and warnings</li>
+    <li>Tailscale for secure remote access without port forwarding</li>
+  </ul>
+
+  <h2>What I Learned</h2>
+  <p>
+    AutoThaw pushed me to think across the full stack simultaneously — mechanical tolerancing,
+    power electronics, firmware logic, and API integration all had to work together as one
+    system. Getting the interference fit right took several print iterations, and debugging the
+    MOSFET circuit reinforced a lesson I now apply to every hardware project: always verify
+    power delivery and current requirements before assuming the control logic is the problem.
+    Integrating multiple external APIs also taught me how to architect software around unreliable
+    network conditions, building in retries and fallback states so the system degrades gracefully
+    rather than failing silently.
+  </p>
+
+</div>
 
       <!-- SIDEBAR -->
       <div class="proj-sidebar">
